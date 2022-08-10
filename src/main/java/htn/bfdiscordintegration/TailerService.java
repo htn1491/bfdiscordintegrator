@@ -34,11 +34,14 @@ public class TailerService extends TailerListenerAdapter {
     private DiscordIntegratorService discordIntegratorService;
 
     private boolean initialLoadFinished = false;
+    
+    private boolean fileNotFoundPrinted = false;
 
     @PostConstruct
     public void tail() {
         Tailer tailer = new Tailer(new File(logFile), this, 500);
-        tailer.run();
+        Thread tailerThread=new Thread(tailer);
+        tailerThread.start();
     }
 
     @Override
@@ -55,19 +58,27 @@ public class TailerService extends TailerListenerAdapter {
 
     @Override
     public void fileNotFound() {
-        log.info("File not found");
+        if(!fileNotFoundPrinted) {
+            fileNotFoundPrinted = true;
+            log.info("File not found");
+        }
         super.fileNotFound();
     }
 
     @Override
     public void handle(String line) {
+        fileNotFoundPrinted = false;
         if (initialLoadFinished) {
             log.debug("Received line: "+line);
             if (StringUtils.hasText(line)) {
-                if (StringUtils.hasText(adminHelpPrefix) && line.trim().startsWith(adminHelpPrefix)) {
-                    discordIntegratorService.publishDiscordAdminHelpMessage(line.trim().replace("!admin ", ""));
-                } else {
-                    discordIntegratorService.publishDiscordMessage(line.trim());
+                if(line.contains("#")) {
+                    String[] msgSplit = line.split("#");
+                    String msg = msgSplit[1].trim();
+                    if (StringUtils.hasText(adminHelpPrefix) && msg.trim().contains(": "+adminHelpPrefix)) {
+                        discordIntegratorService.publishDiscordAdminHelpMessage("INGAME ADMIN CALL: "+msg.trim().replace(adminHelpPrefix, ""));
+                    } else {
+                        discordIntegratorService.publishDiscordMessage(msg.trim());
+                    }
                 }
             } else {
                 log.trace("Ignore blank line");

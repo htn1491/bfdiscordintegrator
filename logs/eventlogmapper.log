@@ -302,3 +302,174 @@ Original Stack Trace:
 2022-08-10 20:03:35.872  INFO robert-laptop --- [           main] d.c.DiscordClientBuilder                 : Discord4J 3.2.2 (https://discord4j.com)
 2022-08-10 20:03:37.747  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:1977cbb9, S:0] Connected to Gateway
 2022-08-10 20:03:37.749  INFO robert-laptop --- [ctor-http-nio-3] d.c.s.LocalShardCoordinator              : [G:1977cbb9, S:0] Shard connected
+2022-08-10 20:33:29.771  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 13896 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 20:33:29.775  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 20:33:30.704  INFO robert-laptop --- [           main] d.c.DiscordClientBuilder                 : Discord4J 3.2.2 (https://discord4j.com)
+2022-08-10 20:33:31.528  WARN robert-laptop --- [           main] s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'discordIntegratorService': Invocation of init method failed; nested exception is discord4j.rest.http.client.ClientException: GET /gateway/bot returned 401 Unauthorized with response {code=0, message=401: Unauthorized}
+2022-08-10 20:33:31.538  INFO robert-laptop --- [           main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-08-10 20:33:31.570 ERROR robert-laptop --- [           main] o.s.b.SpringApplication                  : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'discordIntegratorService': Invocation of init method failed; nested exception is discord4j.rest.http.client.ClientException: GET /gateway/bot returned 401 Unauthorized with response {code=0, message=401: Unauthorized}
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:160)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at htn.bfdiscordintegration.BfdiscordintegrationApplication.main(BfdiscordintegrationApplication.java:10)
+Caused by: discord4j.rest.http.client.ClientException: GET /gateway/bot returned 401 Unauthorized with response {code=0, message=401: Unauthorized}
+	at discord4j.rest.http.client.ClientResponse.clientException(ClientResponse.java:171)
+	Suppressed: The stacktrace has been enhanced by Reactor, refer to additional information below: 
+Error has been observed at the following site(s):
+	*__checkpoint ? Request to GET /gateway/bot [RequestStream]
+	*__checkpoint ? Request to GET /gateway/bot [DefaultRouter]
+Original Stack Trace:
+		at discord4j.rest.http.client.ClientResponse.clientException(ClientResponse.java:171)
+		at discord4j.rest.http.client.ClientResponse.lambda$createException$13(ClientResponse.java:149)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:125)
+		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1816)
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onNext(MonoFlatMap.java:249)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:122)
+		at reactor.core.publisher.FluxHandle$HandleSubscriber.onNext(FluxHandle.java:126)
+		at reactor.core.publisher.FluxPeekFuseable$PeekConditionalSubscriber.onNext(FluxPeekFuseable.java:854)
+		at reactor.core.publisher.FluxPeekFuseable$PeekConditionalSubscriber.onNext(FluxPeekFuseable.java:854)
+		at reactor.core.publisher.FluxPeekFuseable$PeekConditionalSubscriber.onNext(FluxPeekFuseable.java:854)
+		at reactor.core.publisher.FluxMap$MapConditionalSubscriber.onNext(FluxMap.java:224)
+		at reactor.core.publisher.FluxDoFinally$DoFinallySubscriber.onNext(FluxDoFinally.java:113)
+		at reactor.core.publisher.FluxHandleFuseable$HandleFuseableSubscriber.onNext(FluxHandleFuseable.java:191)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107)
+		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1816)
+		at reactor.core.publisher.MonoCollectList$MonoCollectListSubscriber.onComplete(MonoCollectList.java:129)
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:400)
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:419)
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:473)
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:703)
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:93)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436)
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:327)
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:299)
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+		at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:1373)
+		at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1236)
+		at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1285)
+		at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:510)
+		at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:449)
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:279)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:833)
+	Suppressed: java.lang.Exception: #block terminated with an error
+		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:99)
+		at reactor.core.publisher.Mono.block(Mono.java:1707)
+		at htn.bfdiscordintegration.DiscordIntegratorService.init(DiscordIntegratorService.java:48)
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+		at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+		at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:389)
+		at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:333)
+		at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:157)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+		at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+		at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+		at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+		at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+		at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+		at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+		at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+		at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+		at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+		at htn.bfdiscordintegration.BfdiscordintegrationApplication.main(BfdiscordintegrationApplication.java:10)
+2022-08-10 20:34:07.804  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 14260 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 20:34:07.807  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 20:34:08.728  INFO robert-laptop --- [           main] d.c.DiscordClientBuilder                 : Discord4J 3.2.2 (https://discord4j.com)
+2022-08-10 20:34:10.602  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:cd62cf, S:0] Connected to Gateway
+2022-08-10 20:34:10.604  INFO robert-laptop --- [ctor-http-nio-3] d.c.s.LocalShardCoordinator              : [G:cd62cf, S:0] Shard connected
+2022-08-10 20:34:10.619  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:10.715  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Started BfdiscordintegrationApplication in 3.181 seconds (JVM running for 3.83)
+2022-08-10 20:34:11.123  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:11.627  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:12.140  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:12.654  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:13.168  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:13.679  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:14.187  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:14.700  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:15.213  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:15.727  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:16.239  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:16.753  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:17.256  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:17.768  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:18.269  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:18.771  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:19.286  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:19.798  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:34:20.298  INFO robert-laptop --- [      Thread-14] h.b.TailerService                        : File not found
+2022-08-10 20:36:09.190  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 9736 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 20:36:09.193  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 20:36:10.102  INFO robert-laptop --- [           main] d.c.DiscordClientBuilder                 : Discord4J 3.2.2 (https://discord4j.com)
+2022-08-10 20:36:12.144  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:50920628, S:0] Connected to Gateway
+2022-08-10 20:36:12.146  INFO robert-laptop --- [ctor-http-nio-3] d.c.s.LocalShardCoordinator              : [G:50920628, S:0] Shard connected
+2022-08-10 20:36:12.244  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Started BfdiscordintegrationApplication in 3.319 seconds (JVM running for 3.976)
+2022-08-10 20:37:42.605  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 14924 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 20:37:42.609  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 20:37:43.540  INFO robert-laptop --- [           main] d.c.DiscordClientBuilder                 : Discord4J 3.2.2 (https://discord4j.com)
+2022-08-10 20:37:45.296  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:35c8dded, S:0] Connected to Gateway
+2022-08-10 20:37:45.298  INFO robert-laptop --- [ctor-http-nio-3] d.c.s.LocalShardCoordinator              : [G:35c8dded, S:0] Shard connected
+2022-08-10 20:37:45.389  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Started BfdiscordintegrationApplication in 3.055 seconds (JVM running for 3.699)
+2022-08-10 21:01:22.881  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 18676 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 21:01:22.886  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 21:01:23.792  INFO robert-laptop --- [           main] d.c.DiscordClientBuilder                 : Discord4J 3.2.2 (https://discord4j.com)
+2022-08-10 21:01:25.914  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:2c81af, S:0] Connected to Gateway
+2022-08-10 21:01:25.916  INFO robert-laptop --- [ctor-http-nio-3] d.c.s.LocalShardCoordinator              : [G:2c81af, S:0] Shard connected
+2022-08-10 21:01:26.017  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Started BfdiscordintegrationApplication in 3.412 seconds (JVM running for 4.065)
+2022-08-10 21:02:28.250  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 10292 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 21:02:28.253  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 21:02:29.134  INFO robert-laptop --- [           main] d.c.DiscordClientBuilder                 : Discord4J 3.2.2 (https://discord4j.com)
+2022-08-10 21:02:30.956  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:d0d3133, S:0] Connected to Gateway
+2022-08-10 21:02:30.960  INFO robert-laptop --- [ctor-http-nio-3] d.c.s.LocalShardCoordinator              : [G:d0d3133, S:0] Shard connected
+2022-08-10 21:02:31.062  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Started BfdiscordintegrationApplication in 3.086 seconds (JVM running for 3.752)
