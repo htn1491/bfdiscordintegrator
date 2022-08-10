@@ -1,0 +1,304 @@
+2022-08-10 16:42:05.583  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 10504 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 16:42:05.586  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 16:42:57.382  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 7104 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 16:42:57.387  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 16:43:00.818  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:43:02.348  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:43:03.866  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:43:03.866  INFO robert-laptop --- [           main] h.b.TailerService                        : 
+2022-08-10 16:43:05.399  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:43:05.399  INFO robert-laptop --- [           main] h.b.TailerService                        : 
+2022-08-10 16:43:08.446  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:43:11.998  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:43:16.557  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:43:16.557  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:43:21.620  INFO robert-laptop --- [           main] h.b.TailerService                        : dddddddd
+2022-08-10 16:43:30.286  INFO robert-laptop --- [           main] h.b.TailerService                        : dddddd
+2022-08-10 16:43:37.858  INFO robert-laptop --- [           main] h.b.TailerService                        : a
+2022-08-10 16:43:37.858  INFO robert-laptop --- [           main] h.b.TailerService                        : b
+2022-08-10 16:43:40.881  INFO robert-laptop --- [           main] h.b.TailerService                        : c
+2022-08-10 16:43:45.437  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:43:45.437  INFO robert-laptop --- [           main] h.b.TailerService                        : e
+2022-08-10 16:43:45.438  INFO robert-laptop --- [           main] h.b.TailerService                        : f
+2022-08-10 16:43:45.438  INFO robert-laptop --- [           main] h.b.TailerService                        : g
+2022-08-10 16:43:45.438  INFO robert-laptop --- [           main] h.b.TailerService                        : h
+2022-08-10 16:43:45.438  INFO robert-laptop --- [           main] h.b.TailerService                        : i
+2022-08-10 16:46:13.324  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 1268 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 16:46:13.326  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 16:46:13.702  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:14.215  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:14.718  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:15.233  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:15.746  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:16.263  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:16.763  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:17.273  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:17.775  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:18.276  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:18.782  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:19.283  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:19.785  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:20.300  INFO robert-laptop --- [           main] h.b.TailerService                        : File not found
+2022-08-10 16:46:20.804  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:46:20.804  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:46:20.805  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:46:20.805  INFO robert-laptop --- [           main] h.b.TailerService                        : 
+2022-08-10 16:46:20.805  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:46:20.805  INFO robert-laptop --- [           main] h.b.TailerService                        : 
+2022-08-10 16:46:20.805  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:46:20.805  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:46:20.805  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:46:20.805  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:46:20.806  INFO robert-laptop --- [           main] h.b.TailerService                        : dddddddd
+2022-08-10 16:46:20.806  INFO robert-laptop --- [           main] h.b.TailerService                        : dddddd
+2022-08-10 16:46:20.806  INFO robert-laptop --- [           main] h.b.TailerService                        : a
+2022-08-10 16:46:20.806  INFO robert-laptop --- [           main] h.b.TailerService                        : b
+2022-08-10 16:46:20.806  INFO robert-laptop --- [           main] h.b.TailerService                        : c
+2022-08-10 16:46:20.806  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:46:20.806  INFO robert-laptop --- [           main] h.b.TailerService                        : e
+2022-08-10 16:46:20.806  INFO robert-laptop --- [           main] h.b.TailerService                        : f
+2022-08-10 16:46:20.806  INFO robert-laptop --- [           main] h.b.TailerService                        : g
+2022-08-10 16:46:20.807  INFO robert-laptop --- [           main] h.b.TailerService                        : h
+2022-08-10 16:46:20.807  INFO robert-laptop --- [           main] h.b.TailerService                        : i
+2022-08-10 16:47:00.782  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 5680 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 16:47:00.784  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 16:47:01.140  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:47:01.141  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:47:01.141  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:47:01.141  INFO robert-laptop --- [           main] h.b.TailerService                        : 
+2022-08-10 16:47:01.141  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:47:01.141  INFO robert-laptop --- [           main] h.b.TailerService                        : 
+2022-08-10 16:47:01.141  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:47:01.141  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:47:01.141  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:47:01.141  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:47:01.142  INFO robert-laptop --- [           main] h.b.TailerService                        : dddddddd
+2022-08-10 16:47:01.142  INFO robert-laptop --- [           main] h.b.TailerService                        : dddddd
+2022-08-10 16:47:01.142  INFO robert-laptop --- [           main] h.b.TailerService                        : a
+2022-08-10 16:47:01.142  INFO robert-laptop --- [           main] h.b.TailerService                        : b
+2022-08-10 16:47:01.142  INFO robert-laptop --- [           main] h.b.TailerService                        : c
+2022-08-10 16:47:01.142  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:47:01.142  INFO robert-laptop --- [           main] h.b.TailerService                        : e
+2022-08-10 16:47:01.142  INFO robert-laptop --- [           main] h.b.TailerService                        : f
+2022-08-10 16:47:01.142  INFO robert-laptop --- [           main] h.b.TailerService                        : g
+2022-08-10 16:47:01.143  INFO robert-laptop --- [           main] h.b.TailerService                        : h
+2022-08-10 16:47:01.143  INFO robert-laptop --- [           main] h.b.TailerService                        : i
+2022-08-10 16:48:31.475  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 19040 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 16:48:31.478  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 16:48:31.843  INFO robert-laptop --- [           main] h.b.TailerService                        : init
+2022-08-10 16:48:31.847  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:48:31.847  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:48:31.847  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:48:31.848  INFO robert-laptop --- [           main] h.b.TailerService                        : 
+2022-08-10 16:48:31.848  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:48:31.848  INFO robert-laptop --- [           main] h.b.TailerService                        : 
+2022-08-10 16:48:31.848  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:48:31.848  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:48:31.848  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:48:31.848  INFO robert-laptop --- [           main] h.b.TailerService                        : dd
+2022-08-10 16:48:31.848  INFO robert-laptop --- [           main] h.b.TailerService                        : dddddddd
+2022-08-10 16:48:31.849  INFO robert-laptop --- [           main] h.b.TailerService                        : dddddd
+2022-08-10 16:48:31.849  INFO robert-laptop --- [           main] h.b.TailerService                        : a
+2022-08-10 16:48:31.849  INFO robert-laptop --- [           main] h.b.TailerService                        : b
+2022-08-10 16:48:31.849  INFO robert-laptop --- [           main] h.b.TailerService                        : c
+2022-08-10 16:48:31.849  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:48:31.849  INFO robert-laptop --- [           main] h.b.TailerService                        : e
+2022-08-10 16:48:31.849  INFO robert-laptop --- [           main] h.b.TailerService                        : f
+2022-08-10 16:48:31.849  INFO robert-laptop --- [           main] h.b.TailerService                        : g
+2022-08-10 16:48:31.850  INFO robert-laptop --- [           main] h.b.TailerService                        : h
+2022-08-10 16:48:31.850  INFO robert-laptop --- [           main] h.b.TailerService                        : i
+2022-08-10 16:48:31.850  INFO robert-laptop --- [           main] h.b.TailerService                        : end of file
+2022-08-10 16:48:45.032  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:48:45.032  INFO robert-laptop --- [           main] h.b.TailerService                        : end of file
+2022-08-10 16:49:43.046  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 2448 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 16:49:43.049  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 16:49:47.995  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:49:49.535  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:49:50.553  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 16:50:02.267  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 17:35:59.259  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 2228 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 17:35:59.262  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 17:35:59.664  WARN robert-laptop --- [           main] s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'discordIntegratorService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'token' in value "${token}"
+2022-08-10 17:35:59.671  INFO robert-laptop --- [           main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-08-10 17:35:59.684 ERROR robert-laptop --- [           main] o.s.b.SpringApplication                  : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'discordIntegratorService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'token' in value "${token}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at htn.bfdiscordintegration.BfdiscordintegrationApplication.main(BfdiscordintegrationApplication.java:10)
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'token' in value "${token}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1332)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	... 16 more
+2022-08-10 17:37:07.080  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 696 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 17:37:07.083  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 17:37:08.006  INFO robert-laptop --- [           main] d.c.DiscordClientBuilder                 : Discord4J 3.2.2 (https://discord4j.com)
+2022-08-10 17:37:09.917  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:3996c9bb, S:0] Connected to Gateway
+2022-08-10 17:37:09.919  INFO robert-laptop --- [ctor-http-nio-3] d.c.s.LocalShardCoordinator              : [G:3996c9bb, S:0] Shard connected
+2022-08-10 17:37:17.098  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 17:37:21.722  INFO robert-laptop --- [           main] h.b.TailerService                        : d
+2022-08-10 17:37:46.269  INFO robert-laptop --- [           main] h.b.TailerService                        : neue zeile
+2022-08-10 17:45:24.419  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 6204 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 17:45:24.422  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 17:45:24.813  WARN robert-laptop --- [           main] s.c.a.AnnotationConfigApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'discordIntegratorService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'admin_channel_id' in value "${admin_channel_id}"
+2022-08-10 17:45:24.824  INFO robert-laptop --- [           main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-08-10 17:45:24.842 ERROR robert-laptop --- [           main] o.s.b.SpringApplication                  : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'discordIntegratorService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'admin_channel_id' in value "${admin_channel_id}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at htn.bfdiscordintegration.BfdiscordintegrationApplication.main(BfdiscordintegrationApplication.java:10)
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'admin_channel_id' in value "${admin_channel_id}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1332)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	... 16 more
+2022-08-10 17:45:52.185  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 16524 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 17:45:52.188  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 17:45:53.084  INFO robert-laptop --- [           main] d.c.DiscordClientBuilder                 : Discord4J 3.2.2 (https://discord4j.com)
+2022-08-10 17:45:55.279  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:5f5c3877, S:0] Connected to Gateway
+2022-08-10 17:45:55.282  INFO robert-laptop --- [ctor-http-nio-3] d.c.s.LocalShardCoordinator              : [G:5f5c3877, S:0] Shard connected
+2022-08-10 17:46:05.002  INFO robert-laptop --- [           main] h.b.TailerService                        : test
+2022-08-10 17:46:11.163  INFO robert-laptop --- [           main] h.b.TailerService                        : 
+2022-08-10 17:46:11.363 ERROR robert-laptop --- [oundedElastic-1] r.c.p.Operators                          : Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: discord4j.rest.http.client.ClientException: POST /channels/1006944420882559108/messages returned 400 Bad Request with response {code=50006, message=Cannot send an empty message}
+Caused by: discord4j.rest.http.client.ClientException: POST /channels/1006944420882559108/messages returned 400 Bad Request with response {code=50006, message=Cannot send an empty message}
+	at discord4j.rest.http.client.ClientResponse.clientException(ClientResponse.java:171)
+	Suppressed: The stacktrace has been enhanced by Reactor, refer to additional information below: 
+Error has been observed at the following site(s):
+	*__checkpoint ? Request to POST /channels/1006944420882559108/messages [RequestStream]
+	*__checkpoint ? Request to POST /channels/1006944420882559108/messages [DefaultRouter]
+Original Stack Trace:
+		at discord4j.rest.http.client.ClientResponse.clientException(ClientResponse.java:171)
+		at discord4j.rest.http.client.ClientResponse.lambda$createException$13(ClientResponse.java:149)
+		at reactor.core.publisher.MonoFlatMap$FlatMapMain.onNext(MonoFlatMap.java:125)
+		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1816)
+		at reactor.core.publisher.MonoFlatMap$FlatMapInner.onNext(MonoFlatMap.java:249)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onNext(FluxMap.java:122)
+		at reactor.core.publisher.FluxHandle$HandleSubscriber.onNext(FluxHandle.java:126)
+		at reactor.core.publisher.FluxPeekFuseable$PeekConditionalSubscriber.onNext(FluxPeekFuseable.java:854)
+		at reactor.core.publisher.FluxPeekFuseable$PeekConditionalSubscriber.onNext(FluxPeekFuseable.java:854)
+		at reactor.core.publisher.FluxPeekFuseable$PeekConditionalSubscriber.onNext(FluxPeekFuseable.java:854)
+		at reactor.core.publisher.FluxMap$MapConditionalSubscriber.onNext(FluxMap.java:224)
+		at reactor.core.publisher.FluxDoFinally$DoFinallySubscriber.onNext(FluxDoFinally.java:113)
+		at reactor.core.publisher.FluxHandleFuseable$HandleFuseableSubscriber.onNext(FluxHandleFuseable.java:191)
+		at reactor.core.publisher.FluxContextWrite$ContextWriteSubscriber.onNext(FluxContextWrite.java:107)
+		at reactor.core.publisher.Operators$MonoSubscriber.complete(Operators.java:1816)
+		at reactor.core.publisher.MonoCollectList$MonoCollectListSubscriber.onComplete(MonoCollectList.java:129)
+		at reactor.core.publisher.FluxPeek$PeekSubscriber.onComplete(FluxPeek.java:260)
+		at reactor.core.publisher.FluxMap$MapSubscriber.onComplete(FluxMap.java:144)
+		at reactor.netty.channel.FluxReceive.onInboundComplete(FluxReceive.java:400)
+		at reactor.netty.channel.ChannelOperations.onInboundComplete(ChannelOperations.java:419)
+		at reactor.netty.channel.ChannelOperations.terminate(ChannelOperations.java:473)
+		at reactor.netty.http.client.HttpClientOperations.onInboundNext(HttpClientOperations.java:703)
+		at reactor.netty.channel.ChannelOperationsHandler.channelRead(ChannelOperationsHandler.java:93)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+		at io.netty.handler.codec.MessageToMessageDecoder.channelRead(MessageToMessageDecoder.java:103)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+		at io.netty.channel.CombinedChannelDuplexHandler$DelegatingChannelHandlerContext.fireChannelRead(CombinedChannelDuplexHandler.java:436)
+		at io.netty.handler.codec.ByteToMessageDecoder.fireChannelRead(ByteToMessageDecoder.java:327)
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:299)
+		at io.netty.channel.CombinedChannelDuplexHandler.channelRead(CombinedChannelDuplexHandler.java:251)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+		at io.netty.handler.ssl.SslHandler.unwrap(SslHandler.java:1373)
+		at io.netty.handler.ssl.SslHandler.decodeJdkCompatible(SslHandler.java:1236)
+		at io.netty.handler.ssl.SslHandler.decode(SslHandler.java:1285)
+		at io.netty.handler.codec.ByteToMessageDecoder.decodeRemovalReentryProtection(ByteToMessageDecoder.java:510)
+		at io.netty.handler.codec.ByteToMessageDecoder.callDecode(ByteToMessageDecoder.java:449)
+		at io.netty.handler.codec.ByteToMessageDecoder.channelRead(ByteToMessageDecoder.java:279)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+		at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
+		at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
+		at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
+		at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+		at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
+		at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
+		at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
+		at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+		at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+		at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+		at java.base/java.lang.Thread.run(Thread.java:833)
+2022-08-10 17:46:14.738  INFO robert-laptop --- [           main] h.b.TailerService                        : !admin testadmin
+2022-08-10 18:16:42.647  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:5f5c3877, S:0] Reconnecting due to reconnect packet received
+2022-08-10 18:16:42.958  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:5f5c3877, S:0] Reconnected to Gateway
+2022-08-10 19:17:08.081  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:5f5c3877, S:0] Reconnecting due to reconnect packet received
+2022-08-10 19:17:08.405  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:5f5c3877, S:0] Reconnected to Gateway
+2022-08-10 19:52:57.431  INFO robert-laptop --- [           main] h.b.TailerService                        : !admin testa
+2022-08-10 20:02:32.331  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 5636 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 20:02:32.334  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 20:02:33.301  INFO robert-laptop --- [           main] d.c.DiscordClientBuilder                 : Discord4J 3.2.2 (https://discord4j.com)
+2022-08-10 20:02:35.296  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:45976b54, S:0] Connected to Gateway
+2022-08-10 20:02:35.297  INFO robert-laptop --- [ctor-http-nio-3] d.c.s.LocalShardCoordinator              : [G:45976b54, S:0] Shard connected
+2022-08-10 20:02:56.342  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 13208 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 20:02:56.347  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 20:02:57.271  INFO robert-laptop --- [           main] d.c.DiscordClientBuilder                 : Discord4J 3.2.2 (https://discord4j.com)
+2022-08-10 20:02:59.214  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:2edae716, S:0] Connected to Gateway
+2022-08-10 20:02:59.216  INFO robert-laptop --- [ctor-http-nio-3] d.c.s.LocalShardCoordinator              : [G:2edae716, S:0] Shard connected
+2022-08-10 20:02:59.843  INFO robert-laptop --- [oundedElastic-1] h.b.DiscordIntegratorService             : t
+2022-08-10 20:02:59.843  INFO robert-laptop --- [oundedElastic-1] h.b.DiscordIntegratorService             : t
+2022-08-10 20:02:59.844  INFO robert-laptop --- [oundedElastic-1] h.b.DiscordIntegratorService             : t
+2022-08-10 20:02:59.844  INFO robert-laptop --- [oundedElastic-1] h.b.DiscordIntegratorService             : test
+2022-08-10 20:03:34.988  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : Starting BfdiscordintegrationApplication using Java 17.0.4 on robert-laptop with PID 10212 (C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration\target\classes started by Robert in C:\Users\Robert\Documents\NetBeansProjects\bfdiscordintegration)
+2022-08-10 20:03:34.991  INFO robert-laptop --- [           main] h.b.BfdiscordintegrationApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-08-10 20:03:35.872  INFO robert-laptop --- [           main] d.c.DiscordClientBuilder                 : Discord4J 3.2.2 (https://discord4j.com)
+2022-08-10 20:03:37.747  INFO robert-laptop --- [ctor-http-nio-3] d.g.DefaultGatewayClient                 : [G:1977cbb9, S:0] Connected to Gateway
+2022-08-10 20:03:37.749  INFO robert-laptop --- [ctor-http-nio-3] d.c.s.LocalShardCoordinator              : [G:1977cbb9, S:0] Shard connected
