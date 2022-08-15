@@ -8,11 +8,7 @@ import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
-import discord4j.discordjson.json.MessageData;
-import java.time.Instant;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +20,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Robert
  */
-//@Service
+@Service
 public class DiscordIntegratorService {
 
     private static final Logger log = LogManager.getLogger(DiscordIntegratorService.class);
