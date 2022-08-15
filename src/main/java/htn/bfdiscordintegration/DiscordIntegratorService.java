@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Robert
  */
-@Service
+//@Service
 public class DiscordIntegratorService {
 
     private static final Logger log = LogManager.getLogger(DiscordIntegratorService.class);

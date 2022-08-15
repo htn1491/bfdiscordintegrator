@@ -21,7 +21,7 @@
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Logger name="htn.parser.eventlogmapper" level="debug" additivity="false">
+        <Logger name="htn.bfdiscordintegration" level="debug" additivity="false">
             <AppenderRef ref="ConsoleAppender" />
             <AppenderRef ref="FileAppender" />
         </Logger>
