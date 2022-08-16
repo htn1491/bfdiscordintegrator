@@ -88,6 +88,7 @@ public class TailerService extends TailerListenerAdapter {
                         Date dateNew = sdf.parse(matcherNew.group(1));
                         if(dateNew.before(dateCurrent)) {
                             //Created eventlog is older, so ignore it
+                            log.info("Ignoring this file, because the timestamp detected is lower than current file");
                             continue;
                         }
                     } catch(IndexOutOfBoundsException | ParseException e) {
