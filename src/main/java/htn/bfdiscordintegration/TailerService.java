@@ -16,7 +16,12 @@ import java.nio.file.StandardWatchEventKinds;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.annotation.PostConstruct;
 import org.apache.commons.io.input.Tailer;
 import org.apache.commons.io.input.TailerListenerAdapter;
@@ -73,6 +78,21 @@ public class TailerService extends TailerListenerAdapter {
             for (WatchEvent<?> event : key.pollEvents()) {
                 if (event.context().toString().startsWith("ev_") && event.context().toString().endsWith(".xml")) {
                     log.info("Detected new eventlog file " + event.context().toString());
+                    //extracting time from filename like ev_15567-20220816_1323.xml
+                    Pattern p = Pattern.compile("^ev_.*-(\\d\\d\\d\\d\\d\\d\\d\\d_\\d\\d\\d\\d).*$");
+                    Matcher matcherCurrent = p.matcher(currentFileName);
+                    Matcher matcherNew = p.matcher(event.context().toString());
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmm");
+                    try {
+                        Date dateCurrent = sdf.parse(matcherCurrent.group(1));
+                        Date dateNew = sdf.parse(matcherNew.group(1));
+                        if(dateNew.before(dateCurrent)) {
+                            //Created eventlog is older, so ignore it
+                            continue;
+                        }
+                    } catch(IndexOutOfBoundsException | ParseException e) {
+                        //Nothing to do
+                    }
                     if (tailerThread != null) {
                         log.info("Stop reading of current file");
                         tailerThread.interrupt();
