@@ -35,4 +35,26 @@ public enum TeamEnum {
     public String getPrintValue() {
         return PRINTVALUE;
     }
+    
+    public String formatDiscordValue(final String msg) {
+        String formattedMsg = msg;
+        switch(this) {
+            case RED:
+                formattedMsg = "```diff\n"
+                        + "- "+msg+"\n"
+                        + "```";
+                break;
+            case BLUE:
+                formattedMsg = "```ini\n"
+                        + "["+msg+"]\n"
+                        + "```";
+                break;
+            case SPEC:
+                formattedMsg = "```css\n"
+                        + "["+msg+"]\n"
+                        + "```";
+                break;
+        }
+        return formattedMsg;
+    }
 }

@@ -37,33 +37,16 @@ import org.springframework.util.StringUtils;
  * @author Robert
  */
 @Service
-public class TailerService extends TailerListenerAdapter {
+public class TailerService {
 
     private static final Logger log = LogManager.getLogger(TailerService.class);
 
     @Value("${eventlog_file_path}")
     private String eventlogFilePath;
 
-    @Value("${admin_help_prefix}")
-    private String adminHelpPrefix;
-
-    @Value("${chatlogs_export_location}")
-    private String chatlogExportLocation;
-
-    @Autowired
-    private DiscordIntegratorService discordIntegratorService;
-
-    @Autowired
-    private EventlogMapper eventlogMapper;
-
-    private boolean fileNotFoundPrinted = false;
-
     private String currentFileName = "";
 
     private Thread tailerThread = null;
-
-    private String elementCache = "";
-    private boolean collectingElement = false;
 
     @PostConstruct
     public void tail() throws IOException, InterruptedException {
@@ -104,103 +87,12 @@ public class TailerService extends TailerListenerAdapter {
                     String fullFilepath = (eventlogFilePath.endsWith("/") ? eventlogFilePath + event.context().toString() : eventlogFilePath + "/" + event.context().toString());
                     log.info("Start reading of file " + fullFilepath);
                     currentFileName = event.context().toString();
-                    Tailer tailer = new Tailer(new File(fullFilepath), this, 500);
+                    Tailer tailer = new Tailer(new File(fullFilepath), new TailerThread(event.context().toString()), 500);
                     tailerThread = new Thread(tailer);
                     tailerThread.start();
                 }
             }
             key.reset();
-        }
-    }
-
-    @Override
-    public void endOfFileReached() {
-        super.endOfFileReached();
-    }
-
-    @Override
-    public void fileRotated() {
-        super.fileRotated();
-    }
-
-    @Override
-    public void fileNotFound() {
-        if (!fileNotFoundPrinted) {
-            fileNotFoundPrinted = true;
-            log.info("Tailer: File not found");
-        }
-        super.fileNotFound();
-    }
-
-    @Override
-    public void handle(String line) {
-        fileNotFoundPrinted = false;
-        log.trace("Received line: " + line);
-        if (StringUtils.hasText(line)) {
-            //New bf:log begin?
-            if (line.startsWith("<bf:log engine")) {
-                eventlogMapper.reset();
-                eventlogMapper.handleBeginTimestamp(line);
-                return;
-            }
-            if (line.startsWith("<bf:event ")) {
-                collectingElement = true;
-                elementCache = "";
-            }
-
-            if (collectingElement) {
-                elementCache += line;
-            }
-
-            //Event ended, try to parse the event
-            if (line.equals("</bf:event>")) {
-                Optional<ChatModel> chatModelOpt = eventlogMapper.handleBfEvent(elementCache);
-                if (chatModelOpt.isPresent()) {
-                    ChatModel chatModel = chatModelOpt.get();
-                    log.info(chatModel);
-                    handleDiscordMessage(chatModel);
-                    handlePersistMessage(chatModel);
-                }
-                elementCache = "";
-                collectingElement = false;
-            }
-
-        } else {
-            log.trace("Ignore blank line");
-        }
-    }
-
-    private void handleDiscordMessage(final ChatModel chatModel) {
-        if (StringUtils.hasText(adminHelpPrefix) && chatModel.getText().trim().startsWith(adminHelpPrefix)) {
-            discordIntegratorService.publishDiscordAdminHelpMessage("INGAME ADMIN CALL: " + formatMessage(chatModel).replace(adminHelpPrefix, ""));
-        } else {
-            discordIntegratorService.publishDiscordMessage(formatMessage(chatModel));
-        }
-    }
-
-    private String formatMessage(final ChatModel chatModel) {
-        return "[" + TeamEnum.findByCode(chatModel.getTeam()).getPrintValue() + "] " + (chatModel.getPlayerModel() == null ? "unknown" : chatModel.getPlayerModel().getName()) + ": " + chatModel.getText();
-    }
-
-    private void handlePersistMessage(final ChatModel chatModel) {
-        if (!StringUtils.hasText(chatlogExportLocation)) {
-            return;
-        }
-        String targetFilePath = chatlogExportLocation + currentFileName + ".chatlog";
-        try {
-
-            File output = new File(targetFilePath);
-            FileOutputStream fos = new FileOutputStream(output, true);
-
-            log.trace("Writing to chatlog file " + targetFilePath);
-            try ( BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos))) {
-                log.debug("Write line: " + chatModel.getFormattedTimestamp() + " : # " + formatMessage(chatModel));
-                bw.write(chatModel.getFormattedTimestamp() + " : # " + formatMessage(chatModel));
-                bw.newLine();
-            }
-            log.trace("Write completed");
-        } catch (IOException e) {
-            log.warn("Error writing chatlog to new file " + targetFilePath + "! Is it writable?");
         }
     }
 
