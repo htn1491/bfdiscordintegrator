@@ -80,13 +80,14 @@ public class TailerService extends TailerListenerAdapter {
                     log.info("Detected new eventlog file " + event.context().toString());
                     //extracting time from filename like ev_15567-20220816_1323.xml
                     if (StringUtils.hasText(currentFileName)) {
+                        log.info("Compare with current file "+currentFileName);
                         Pattern p = Pattern.compile("^ev_.*-(\\d\\d\\d\\d\\d\\d\\d\\d_\\d\\d\\d\\d).*$");
                         Matcher matcherCurrent = p.matcher(currentFileName);
                         Matcher matcherNew = p.matcher(event.context().toString());
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmm");
                         try {
-                            Date dateCurrent = sdf.parse(matcherCurrent.group(1));
                             Date dateNew = sdf.parse(matcherNew.group(1));
+                            Date dateCurrent = sdf.parse(matcherCurrent.group(1));
                             if (dateNew.before(dateCurrent)) {
                                 //Created eventlog is older, so ignore it
                                 log.info("Ignoring this file, because the timestamp detected is lower than current file");
@@ -126,7 +127,7 @@ public class TailerService extends TailerListenerAdapter {
     public void fileNotFound() {
         if (!fileNotFoundPrinted) {
             fileNotFoundPrinted = true;
-            log.info("File not found");
+            log.info("Tailer: File not found");
         }
         super.fileNotFound();
     }
