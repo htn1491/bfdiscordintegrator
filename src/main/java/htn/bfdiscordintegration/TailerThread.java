@@ -45,13 +45,11 @@ public class TailerThread extends TailerListenerAdapter {
 
     @Override
     public void endOfFileReached() {
-        log.debug("Tailer: EndOfFileReached");
         super.endOfFileReached();
     }
 
     @Override
     public void fileRotated() {
-        log.debug("Tailer: File rotated");
         super.fileRotated();
     }
 
@@ -99,6 +97,7 @@ public class TailerThread extends TailerListenerAdapter {
                     handleDiscordMessage(chatModel);
                     handlePersistMessage(chatModel);
                 }
+                log.info("Clearing element cache");
                 elementCache = "";
                 collectingElement = false;
             }

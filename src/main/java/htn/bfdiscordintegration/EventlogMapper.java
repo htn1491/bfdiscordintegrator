@@ -27,12 +27,14 @@ import javax.xml.xpath.XPathConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -190,9 +192,10 @@ public class EventlogMapper {
                     }
                     return Optional.of(chatModel);
                 default:
+                    log.info("No handled attribute "+docEl.getAttribute("name"));
                     break;
             }
-        } catch (SAXException | IOException ex) {
+        } catch (IOException | NumberFormatException | BeansException | DOMException | SAXException ex) {
             log.warn("Error handling node " + event, ex);
         }
         return Optional.empty();
