@@ -43,13 +43,9 @@ import org.xml.sax.SAXException;
  *
  * @author Robert
  */
-@Service
 public class EventlogMapper {
 
     private static final Logger log = LogManager.getLogger(EventlogMapper.class);
-
-    @Autowired
-    private ApplicationContext appContext;
 
     private final Map<Integer, PlayerModel> knownPlayers = new HashMap<>();
 
@@ -59,21 +55,9 @@ public class EventlogMapper {
 
     private DocumentBuilder documentBuilder;
 
-    private void shutdown(int pExitCode) {
-        int exitCode = SpringApplication.exit(appContext, (ExitCodeGenerator) () -> pExitCode);
-
-        System.exit(exitCode);
-    }
-
-    @PostConstruct
-    public void init() {
+    public void EventlogMapper() throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        try {
-            documentBuilder = factory.newDocumentBuilder();
-        } catch (ParserConfigurationException ex) {
-            log.error("No document Reader instantiate...", ex);
-            shutdown(1);
-        }
+        documentBuilder = factory.newDocumentBuilder();
     }
 
     public void reset() {

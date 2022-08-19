@@ -34,8 +34,7 @@ public class TailerThread extends TailerListenerAdapter {
     @Autowired
     private DiscordIntegratorService discordIntegratorService;
 
-    @Autowired
-    private EventlogMapper eventlogMapper;
+    private final EventlogMapper eventlogMapper;
 
     private boolean fileNotFoundPrinted = false;
 
@@ -46,11 +45,13 @@ public class TailerThread extends TailerListenerAdapter {
 
     @Override
     public void endOfFileReached() {
+        log.debug("Tailer: EndOfFileReached");
         super.endOfFileReached();
     }
 
     @Override
     public void fileRotated() {
+        log.debug("Tailer: File rotated");
         super.fileRotated();
     }
 
@@ -65,6 +66,7 @@ public class TailerThread extends TailerListenerAdapter {
 
     public TailerThread(final String filename) {
         this.filename = filename;
+        this.eventlogMapper = new EventlogMapper();
     }
 
     @Override
@@ -74,6 +76,7 @@ public class TailerThread extends TailerListenerAdapter {
         if (StringUtils.hasText(line)) {
             //New bf:log begin?
             if (line.startsWith("<bf:log engine")) {
+                log.debug("New start of log file detected");
                 eventlogMapper.reset();
                 eventlogMapper.handleBeginTimestamp(line);
                 return;
