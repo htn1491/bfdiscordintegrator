@@ -66,7 +66,9 @@ public class TailerService {
                         log.info("Compare with current file "+currentFileName);
                         Pattern p = Pattern.compile("^ev_.*-(\\d\\d\\d\\d\\d\\d\\d\\d_\\d\\d\\d\\d).*$");
                         Matcher matcherCurrent = p.matcher(currentFileName);
+                        matcherCurrent.matches();
                         Matcher matcherNew = p.matcher(event.context().toString());
+                        matcherNew.matches();
                         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmm");
                         try {
                             Date dateNew = sdf.parse(matcherNew.group(1));
