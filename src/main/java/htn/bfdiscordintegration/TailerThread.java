@@ -70,7 +70,7 @@ public class TailerThread extends TailerListenerAdapter {
     @Override
     public void handle(String line) {
         fileNotFoundPrinted = false;
-        log.trace("Received line: " + line);
+        log.debug("Received line: " + line);
         if (StringUtils.hasText(line)) {
             //New bf:log begin?
             if (line.startsWith("<bf:log engine")) {
@@ -101,7 +101,7 @@ public class TailerThread extends TailerListenerAdapter {
             }
 
         } else {
-            log.trace("Ignore blank line");
+            log.debug("Ignore blank line");
         }
     }
 
@@ -127,13 +127,13 @@ public class TailerThread extends TailerListenerAdapter {
             File output = new File(targetFilePath);
             FileOutputStream fos = new FileOutputStream(output, true);
 
-            log.trace("Writing to chatlog file " + targetFilePath);
+            log.debug("Writing to chatlog file " + targetFilePath);
             try ( BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos))) {
                 log.debug("Write line: " + chatModel.getFormattedTimestamp() + " : # " + formatMessage(chatModel));
                 bw.write(chatModel.getFormattedTimestamp() + " : # " + formatMessage(chatModel));
                 bw.newLine();
             }
-            log.trace("Write completed");
+            log.debug("Write completed");
         } catch (IOException e) {
             log.warn("Error writing chatlog to new file " + targetFilePath + "! Is it writable?");
         }
