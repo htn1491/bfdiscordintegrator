@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package htn.bfdiscordintegration;
 
 import java.io.ByteArrayInputStream;
@@ -12,27 +8,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
-import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.annotation.PostConstruct;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ExitCodeGenerator;
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
@@ -41,10 +27,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-/**
- *
- * @author Robert
- */
 public class EventlogMapper {
 
     private static final Logger log = LogManager.getLogger(EventlogMapper.class);
@@ -56,11 +38,6 @@ public class EventlogMapper {
     private final Pattern BEGINTIMESTAMPPATTERN = Pattern.compile("^.*timestamp=\"(\\d*_\\d*)\".*$");
 
     private DocumentBuilder documentBuilder;
-
-    public void EventlogMapper() throws Exception {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        documentBuilder = factory.newDocumentBuilder();
-    }
 
     public void reset() {
         log.info("Reset EventlogMapper");
@@ -99,12 +76,14 @@ public class EventlogMapper {
      * Optional if just metadata received
      */
     public Optional<ChatModel> handleBfEvent(String event) {
-        log.info("Handle event " + event);
+        log.trace("Handle event " + event);
         Document doc;
         for (Map.Entry<Integer, String> mapEntry : ISO8859Character.characterMap.entrySet()) {
             event = event.replaceAll("(<bf:nonprint>" + mapEntry.getKey() + "</bf:nonprint>)", mapEntry.getValue());
         }
         try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            this.documentBuilder = factory.newDocumentBuilder();
             ByteArrayInputStream input = new ByteArrayInputStream(event.getBytes("ISO-8859-1"));
             Reader reader = new InputStreamReader(input, "ISO-8859-1");
             InputSource is = new InputSource(reader);
@@ -192,10 +171,10 @@ public class EventlogMapper {
                     }
                     return Optional.of(chatModel);
                 default:
-                    log.info("No handled attribute "+docEl.getAttribute("name"));
+                    log.trace("No handled attribute " + docEl.getAttribute("name"));
                     break;
             }
-        } catch (IOException | NumberFormatException | BeansException | DOMException | SAXException ex) {
+        } catch (IOException | NumberFormatException | BeansException | DOMException | SAXException | ParserConfigurationException ex) {
             log.warn("Error handling node " + event, ex);
         }
         return Optional.empty();

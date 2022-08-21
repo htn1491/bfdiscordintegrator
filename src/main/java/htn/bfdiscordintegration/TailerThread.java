@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package htn.bfdiscordintegration;
 
 import java.io.BufferedWriter;
@@ -13,26 +9,17 @@ import java.util.Optional;
 import org.apache.commons.io.input.TailerListenerAdapter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 
-/**
- *
- * @author Robert
- */
 public class TailerThread extends TailerListenerAdapter {
     
     private static final Logger log = LogManager.getLogger(TailerThread.class);
 
-    @Value("${admin_help_prefix}")
-    private String adminHelpPrefix;
+    private final String adminHelpPrefix;
 
-    @Value("${chatlogs_export_location}")
-    private String chatlogExportLocation;
+    private final String chatlogExportLocation;
 
-    @Autowired
-    private DiscordIntegratorService discordIntegratorService;
+    private final DiscordIntegratorService discordIntegratorService;
 
     private final EventlogMapper eventlogMapper;
 
@@ -42,7 +29,15 @@ public class TailerThread extends TailerListenerAdapter {
     private boolean collectingElement = false;
     
     private final String filename;
-
+    
+    public TailerThread(final String filename, final DiscordIntegratorService discordIntegratorService, final String adminHelpPrefix, final String chatlogExportLocation) {
+        this.filename = filename;
+        this.eventlogMapper = new EventlogMapper();
+        this.discordIntegratorService = discordIntegratorService;
+        this.adminHelpPrefix = adminHelpPrefix;
+        this.chatlogExportLocation = chatlogExportLocation;
+    }
+    
     @Override
     public void endOfFileReached() {
         super.endOfFileReached();
@@ -62,15 +57,10 @@ public class TailerThread extends TailerListenerAdapter {
         super.fileNotFound();
     }
 
-    public TailerThread(final String filename) {
-        this.filename = filename;
-        this.eventlogMapper = new EventlogMapper();
-    }
-
     @Override
     public void handle(String line) {
         fileNotFoundPrinted = false;
-        log.debug("Received line: " + line);
+        log.trace("Received line: " + line);
         if (StringUtils.hasText(line)) {
             //New bf:log begin?
             if (line.startsWith("<bf:log engine")) {
@@ -97,32 +87,38 @@ public class TailerThread extends TailerListenerAdapter {
                     handleDiscordMessage(chatModel);
                     handlePersistMessage(chatModel);
                 }
-                log.info("Clearing element cache");
+                log.trace("Clearing element cache");
                 elementCache = "";
                 collectingElement = false;
             }
 
         } else {
-            log.debug("Ignore blank line");
+            log.trace("Ignore blank line");
         }
     }
 
     private void handleDiscordMessage(final ChatModel chatModel) {
         if (StringUtils.hasText(adminHelpPrefix) && chatModel.getText().trim().startsWith(adminHelpPrefix)) {
-            discordIntegratorService.publishDiscordAdminHelpMessage(TeamEnum.findByCode(chatModel.getTeam()).formatDiscordValue("INGAME ADMIN CALL: " + formatMessage(chatModel).replace(adminHelpPrefix, "")));
+            discordIntegratorService.publishDiscordAdminHelpMessage("INGAME ADMIN CALL: " + formatMessage(chatModel, false).replace(adminHelpPrefix, ""), chatModel);
         } else {
-            discordIntegratorService.publishDiscordMessage(TeamEnum.findByCode(chatModel.getTeam()).formatDiscordValue(formatMessage(chatModel)));
+            discordIntegratorService.publishDiscordMessage(formatMessage(chatModel, false), chatModel);
         }
     }
 
-    private String formatMessage(final ChatModel chatModel) {
-        return "[" + TeamEnum.findByCode(chatModel.getTeam()).getPrintValue() + "] " + (chatModel.getPlayerModel() == null ? "unknown" : chatModel.getPlayerModel().getName()) + ": " + chatModel.getText();
+    private String formatMessage(final ChatModel chatModel, final boolean includeTeam) {
+        String msg = "";
+        if(includeTeam) {
+            msg += "[" + TeamEnum.findByCode(chatModel.getTeam()).getPrintValue() + "] ";
+        }
+        msg += (chatModel.getPlayerModel() == null ? "unknown" : chatModel.getPlayerModel().getName()) + ": " + chatModel.getText();
+        return msg;
     }
 
     private void handlePersistMessage(final ChatModel chatModel) {
         if (!StringUtils.hasText(chatlogExportLocation)) {
             return;
         }
+        
         String targetFilePath = chatlogExportLocation + filename + ".chatlog";
         try {
 
@@ -131,8 +127,8 @@ public class TailerThread extends TailerListenerAdapter {
 
             log.debug("Writing to chatlog file " + targetFilePath);
             try ( BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos))) {
-                log.debug("Write line: " + chatModel.getFormattedTimestamp() + " : # " + formatMessage(chatModel));
-                bw.write(chatModel.getFormattedTimestamp() + " : # " + formatMessage(chatModel));
+                log.debug("Write line: " + chatModel.getFormattedTimestamp() + " : # " + formatMessage(chatModel, true));
+                bw.write(chatModel.getFormattedTimestamp() + " : # " + formatMessage(chatModel, true));
                 bw.newLine();
             }
             log.debug("Write completed");

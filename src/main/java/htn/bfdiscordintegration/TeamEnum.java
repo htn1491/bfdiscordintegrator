@@ -1,26 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package htn.bfdiscordintegration;
 
-/**
- *
- * @author Admin
- */
+import discord4j.rest.util.Color;
+
 public enum TeamEnum {
-    GLOBAL(0, "Global"),
-    RED(1, "RED"),
-    BLUE(2, "BLUE"),
-    SPEC(3, "SPEC"),
-    UNKOWN(-1, "Unknown");
+    GLOBAL(0, "Global", Color.GRAY),
+    RED(1, "RED", Color.RED),
+    BLUE(2, "BLUE", Color.BLUE),
+    SPEC(3, "SPEC", Color.ORANGE),
+    UNKOWN(-1, "Unknown", Color.GRAY);
     
     private final int CODE;
     private final String PRINTVALUE;
+    private final Color DISCORDCOLOR;
     
-    private TeamEnum(int code, String printValue) {
+    private TeamEnum(int code, String printValue, Color discordColor) {
         this.CODE = code;
         this.PRINTVALUE = printValue;
+        this.DISCORDCOLOR = discordColor;
     }
     
     public static TeamEnum findByCode(int code) {
@@ -36,25 +32,7 @@ public enum TeamEnum {
         return PRINTVALUE;
     }
     
-    public String formatDiscordValue(final String msg) {
-        String formattedMsg = msg;
-        switch(this) {
-            case RED:
-                formattedMsg = "```diff\n"
-                        + "- "+msg+"\n"
-                        + "```";
-                break;
-            case BLUE:
-                formattedMsg = "```ini\n"
-                        + "["+msg+"]\n"
-                        + "```";
-                break;
-            case SPEC:
-                formattedMsg = "```css\n"
-                        + "["+msg+"]\n"
-                        + "```";
-                break;
-        }
-        return formattedMsg;
+    public Color getDiscordColor() {
+        return DISCORDCOLOR;
     }
 }

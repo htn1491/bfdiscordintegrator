@@ -1,16 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package htn.bfdiscordintegration;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author Robert
- */
 public class ISO8859Character {
 
     public static final Map<Integer, String> characterMap = new HashMap<Integer, String>() {

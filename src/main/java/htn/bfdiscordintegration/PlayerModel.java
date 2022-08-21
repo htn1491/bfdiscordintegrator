@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package htn.bfdiscordintegration;
 
-/**
- *
- * @author Admin
- */
 public class PlayerModel {
     private String name;
     private String currentName;
