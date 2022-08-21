@@ -4,6 +4,7 @@ import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
+import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
 import javax.annotation.PostConstruct;
@@ -26,6 +27,9 @@ public class DiscordIntegratorService {
 
     @Value("${admin_help_channel_id}")
     private String adminChannelId;
+
+    @Value("${admin_help_mention_id:}")
+    private String adminHelpMentionId;
     
     @Value("${hide_rm_commands_in_discord:true}")
     private Boolean hideRmCommandsInDiscord;
@@ -67,9 +71,9 @@ public class DiscordIntegratorService {
 
     public void publishDiscordAdminHelpMessage(final String msg, final ChatModel chatModel) {
         if (StringUtils.hasText(adminChannelId)) {
-            gatewayDiscordClient.getChannelById(Snowflake.of(adminChannelId))
+                gatewayDiscordClient.getChannelById(Snowflake.of(adminChannelId))
                     .ofType(MessageChannel.class)
-                    .flatMap(channel -> channel.createMessage(createDiscordFormattedMessage(msg, chatModel)))
+                    .flatMap(channel -> channel.createMessage((StringUtils.hasText(adminHelpMentionId) ? "<@&"+adminHelpMentionId+"> " : "")+msg))
                     .subscribe();
         } else {
             log.info("Admin-Help message dropped, because no admin_channel_id is set: " + msg);
