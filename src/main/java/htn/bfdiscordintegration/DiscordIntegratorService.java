@@ -26,6 +26,9 @@ public class DiscordIntegratorService {
 
     @Value("${admin_help_channel_id}")
     private String adminChannelId;
+    
+    @Value("${hide_rm_commands_in_discord:true}")
+    private Boolean hideRmCommandsInDiscord;
 
     private GatewayDiscordClient gatewayDiscordClient;
 
@@ -52,6 +55,10 @@ public class DiscordIntegratorService {
     }
 
     public void publishDiscordMessage(final String msg, final ChatModel chatModel) {
+        if(hideRmCommandsInDiscord != null && hideRmCommandsInDiscord && msg.contains(": !")) {
+            log.info("Ignore message with RM command in discord publisher: "+msg);
+            return;
+        }
         gatewayDiscordClient.getChannelById(Snowflake.of(chatChannelID))
                 .ofType(MessageChannel.class)
                 .flatMap(channel -> channel.createMessage(createDiscordFormattedMessage(msg, chatModel)))
