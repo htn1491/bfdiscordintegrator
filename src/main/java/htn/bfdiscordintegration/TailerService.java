@@ -36,6 +36,9 @@ public class TailerService {
 
     @Value("${chatlogs_export_location}")
     private String chatlogExportLocation;
+    
+    @Value("${move_after_read_location}")
+    private String moveAfterReadLocation;
 
     private String currentFileName = "";
 
@@ -81,6 +84,11 @@ public class TailerService {
                     if (tailerThread != null) {
                         log.info("Stop reading of current file");
                         tailerThread.interrupt();
+                        if(StringUtils.hasText(moveAfterReadLocation)) {
+                            log.info("Moving old file to "+moveAfterReadLocation+"/"+currentFileName);
+                            String fullOldFilepath = (eventlogFilePath.endsWith("/") ? eventlogFilePath + currentFileName : eventlogFilePath + "/" + currentFileName);
+                            new File(fullOldFilepath).renameTo(new File(moveAfterReadLocation+"/"+currentFileName));
+                        }
                     }
                     String fullFilepath = (eventlogFilePath.endsWith("/") ? eventlogFilePath + event.context().toString() : eventlogFilePath + "/" + event.context().toString());
                     log.info("Start reading of file " + fullFilepath);
