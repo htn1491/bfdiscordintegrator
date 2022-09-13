@@ -3,8 +3,10 @@ package htn.bfdiscordintegration;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardWatchEventKinds;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
@@ -37,8 +39,11 @@ public class TailerService {
     @Value("${chatlogs_export_location}")
     private String chatlogExportLocation;
     
-    @Value("${move_after_read_location}")
-    private String moveAfterReadLocation;
+    @Value("${move_after_read_locations}")
+    private String moveAfterReadLocations;
+    
+    @Value("${delete_after_read_and_move}")
+    private Boolean deleteAfterReadAndMove;
 
     private String currentFileName = "";
 
@@ -84,10 +89,20 @@ public class TailerService {
                     if (tailerThread != null) {
                         log.info("Stop reading of current file");
                         tailerThread.interrupt();
-                        if(StringUtils.hasText(moveAfterReadLocation)) {
-                            log.info("Moving old file to "+moveAfterReadLocation+"/"+currentFileName);
+                        if(StringUtils.hasText(moveAfterReadLocations)) {
+                            String[] locations = moveAfterReadLocations.split(",");
                             String fullOldFilepath = (eventlogFilePath.endsWith("/") ? eventlogFilePath + currentFileName : eventlogFilePath + "/" + currentFileName);
-                            new File(fullOldFilepath).renameTo(new File(moveAfterReadLocation+"/"+currentFileName));
+                            for(String location : locations) {
+                                if(!location.endsWith("/")) {
+                                    location = location+"/";
+                                }
+                                log.info("Copying old file to " + location + currentFileName);
+                                Files.copy(Paths.get(fullOldFilepath), Paths.get(location + currentFileName), StandardCopyOption.REPLACE_EXISTING);
+                            }
+                            if(deleteAfterReadAndMove) {
+                                log.info("Deleting file " + fullOldFilepath);
+                                Files.delete(Paths.get(fullOldFilepath));
+                            }
                         }
                     }
                     String fullFilepath = (eventlogFilePath.endsWith("/") ? eventlogFilePath + event.context().toString() : eventlogFilePath + "/" + event.context().toString());
