@@ -40,11 +40,13 @@ public class TailerThread extends TailerListenerAdapter {
     
     @Override
     public void endOfFileReached() {
+        log.debug("Tailer: endOfFileReached");
         super.endOfFileReached();
     }
 
     @Override
     public void fileRotated() {
+        log.debug("Tailer: fileRotated");
         super.fileRotated();
     }
 
@@ -60,7 +62,7 @@ public class TailerThread extends TailerListenerAdapter {
     @Override
     public void handle(String line) {
         fileNotFoundPrinted = false;
-        log.trace("Received line: " + line);
+        log.debug("Received line: " + line);
         if (StringUtils.hasText(line)) {
             //New bf:log begin?
             if (line.startsWith("<bf:log engine")) {
