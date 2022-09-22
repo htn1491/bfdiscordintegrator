@@ -7,6 +7,7 @@ import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
+import discord4j.rest.util.Color;
 import javax.annotation.PostConstruct;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -56,6 +57,18 @@ public class DiscordIntegratorService {
                 .color(TeamEnum.findByCode(chatModel.getTeam()).getDiscordColor())
                 .description(msg)
                 .build();
+    }
+    
+    public void publishEndRound() {
+        
+        EmbedCreateSpec spec = EmbedCreateSpec.builder()
+                .color(Color.DARK_GRAY)
+                .description("--- ROUND HAS ENDED ---")
+                .build();
+        gatewayDiscordClient.getChannelById(Snowflake.of(chatChannelID))
+                .ofType(MessageChannel.class)
+                .flatMap(channel -> channel.createMessage(spec))
+                .subscribe();
     }
 
     public void publishDiscordMessage(final String msg, final ChatModel chatModel) {

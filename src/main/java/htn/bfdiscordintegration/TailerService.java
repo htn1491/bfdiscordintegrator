@@ -104,6 +104,8 @@ public class TailerService {
                                 Files.delete(Paths.get(fullOldFilepath));
                             }
                         }
+                        log.info("Publish end round to discord");
+                        discordIntegratorService.publishEndRound();
                     }
                     String fullFilepath = (eventlogFilePath.endsWith("/") ? eventlogFilePath + event.context().toString() : eventlogFilePath + "/" + event.context().toString());
                     log.info("Start reading of file " + fullFilepath);
