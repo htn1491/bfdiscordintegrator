@@ -1,10 +1,11 @@
 htn\bfdiscordintegration\ChatModel.class
+htn\bfdiscordintegration\CustomTailerThread.class
+htn\bfdiscordintegration\TailerService.class
+htn\bfdiscordintegration\PlayerModel.class
+htn\bfdiscordintegration\EventlogMapper.class
 htn\bfdiscordintegration\ISO8859Character$1.class
 htn\bfdiscordintegration\BfdiscordintegrationApplication.class
 htn\bfdiscordintegration\DiscordIntegratorService.class
-htn\bfdiscordintegration\TailerService.class
 htn\bfdiscordintegration\TeamEnum.class
-htn\bfdiscordintegration\PlayerModel.class
 htn\bfdiscordintegration\TailerThread.class
-htn\bfdiscordintegration\EventlogMapper.class
 htn\bfdiscordintegration\ISO8859Character.class

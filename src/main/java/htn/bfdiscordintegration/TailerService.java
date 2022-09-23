@@ -110,8 +110,8 @@ public class TailerService {
                     String fullFilepath = (eventlogFilePath.endsWith("/") ? eventlogFilePath + event.context().toString() : eventlogFilePath + "/" + event.context().toString());
                     log.info("Start reading of file " + fullFilepath);
                     currentFileName = event.context().toString();
-                    Tailer tailer = new Tailer(new File(fullFilepath), new TailerThread(event.context().toString(), discordIntegratorService, adminHelpPrefix, chatlogExportLocation), 500);
-                    tailerThread = new Thread(tailer);
+//                    Tailer tailer = new Tailer(new File(fullFilepath), new TailerThread(event.context().toString(), discordIntegratorService, adminHelpPrefix, chatlogExportLocation), 500);
+                    tailerThread = new CustomTailerThread(fullFilepath, event.context().toString(), discordIntegratorService, adminHelpPrefix, chatlogExportLocation);
                     tailerThread.start();
                 }
             }
