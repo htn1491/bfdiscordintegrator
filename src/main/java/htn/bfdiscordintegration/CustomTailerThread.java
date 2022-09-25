@@ -62,7 +62,7 @@ public class CustomTailerThread extends Thread {
     }
 
     private void handle(String line) {
-        log.debug("Received line: " + line);
+        log.trace("Received line: " + line);
         if (StringUtils.hasText(line)) {
             //New bf:log begin?
             if (line.startsWith("<bf:log ")) {
