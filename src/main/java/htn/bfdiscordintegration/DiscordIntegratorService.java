@@ -4,7 +4,6 @@ import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.rest.util.Color;
@@ -26,12 +25,15 @@ public class DiscordIntegratorService {
     @Value("${chat_channel_id}")
     private String chatChannelID;
 
+    @Value("${public_chat_channel_id}")
+    private String publicChatChannelID;
+
     @Value("${admin_help_channel_id}")
     private String adminChannelId;
 
     @Value("${admin_help_mention_id:}")
     private String adminHelpMentionId;
-    
+
     @Value("${hide_rm_commands_in_discord:true}")
     private Boolean hideRmCommandsInDiscord;
 
@@ -51,16 +53,16 @@ public class DiscordIntegratorService {
                     return mce.getMessage();
                 });
     }
-    
+
     private EmbedCreateSpec createDiscordFormattedMessage(final String msg, final ChatModel chatModel) {
         return EmbedCreateSpec.builder()
                 .color(TeamEnum.findByCode(chatModel.getTeam()).getDiscordColor())
                 .description(msg)
                 .build();
     }
-    
+
     public void publishEndRound() {
-        
+
         EmbedCreateSpec spec = EmbedCreateSpec.builder()
                 .color(Color.DARK_GRAY)
                 .description("--- ROUND HAS ENDED ---")
@@ -69,24 +71,40 @@ public class DiscordIntegratorService {
                 .ofType(MessageChannel.class)
                 .flatMap(channel -> channel.createMessage(spec))
                 .subscribe();
+        if (StringUtils.hasText(publicChatChannelID)) {
+            gatewayDiscordClient.getChannelById(Snowflake.of(publicChatChannelID))
+                    .ofType(MessageChannel.class)
+                    .flatMap(channel -> channel.createMessage(spec))
+                    .subscribe();
+        }
     }
 
     public void publishDiscordMessage(final String msg, final ChatModel chatModel) {
-        if(hideRmCommandsInDiscord != null && hideRmCommandsInDiscord && msg.contains(": !")) {
-            log.info("Ignore message with RM command in discord publisher: "+msg);
+        if (hideRmCommandsInDiscord != null && hideRmCommandsInDiscord && msg.contains(": !")) {
+            log.info("Ignore message with RM command in discord publisher: " + msg);
             return;
         }
         gatewayDiscordClient.getChannelById(Snowflake.of(chatChannelID))
                 .ofType(MessageChannel.class)
                 .flatMap(channel -> channel.createMessage(createDiscordFormattedMessage(msg, chatModel)))
                 .subscribe();
+
+        if (StringUtils.hasText(publicChatChannelID)) {
+            TeamEnum teamEnum = TeamEnum.findByCode(chatModel.getTeam());
+            if (teamEnum == TeamEnum.GLOBAL || teamEnum == TeamEnum.UNKOWN) {
+                gatewayDiscordClient.getChannelById(Snowflake.of(publicChatChannelID))
+                        .ofType(MessageChannel.class)
+                        .flatMap(channel -> channel.createMessage(createDiscordFormattedMessage(msg, chatModel)))
+                        .subscribe();
+            }
+        }
     }
 
     public void publishDiscordAdminHelpMessage(final String msg, final ChatModel chatModel) {
         if (StringUtils.hasText(adminChannelId)) {
-                gatewayDiscordClient.getChannelById(Snowflake.of(adminChannelId))
+            gatewayDiscordClient.getChannelById(Snowflake.of(adminChannelId))
                     .ofType(MessageChannel.class)
-                    .flatMap(channel -> channel.createMessage((StringUtils.hasText(adminHelpMentionId) ? "<@&"+adminHelpMentionId+"> " : "")+msg))
+                    .flatMap(channel -> channel.createMessage((StringUtils.hasText(adminHelpMentionId) ? "<@&" + adminHelpMentionId + "> " : "") + msg))
                     .subscribe();
         } else {
             log.info("Admin-Help message dropped, because no admin_channel_id is set: " + msg);
