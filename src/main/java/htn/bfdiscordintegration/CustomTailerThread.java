@@ -107,7 +107,7 @@ public class CustomTailerThread extends Thread {
             }
             
             //Roundstats ended, try to parse the roundstats
-            if (publishRoundStats && line.equals("</bf:event>")) {
+            if (publishRoundStats && line.equals("</bf:roundstats>")) {
                 Optional<RoundStatModel> roundStatModelOpt = eventlogMapper.handleRoundStats(elementCache);
                 if (roundStatModelOpt.isPresent()) {
                     RoundStatModel roundStatModel = roundStatModelOpt.get();
