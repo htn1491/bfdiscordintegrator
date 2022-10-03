@@ -74,12 +74,11 @@ public class EventlogMapper {
     }
 
     public Optional<RoundStatModel> handleRoundStats(String roundstats) {
-        log.info("Handle roundstats " + roundstats);
+        log.trace("Handle roundstats " + roundstats);
         for (Map.Entry<Integer, String> mapEntry : ISO8859Character.characterMap.entrySet()) {
             roundstats = roundstats.replaceAll("(<bf:nonprint>" + mapEntry.getKey() + "</bf:nonprint>)", mapEntry.getValue());
         }
         Document doc;
-        log.info("0");
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             this.documentBuilder = factory.newDocumentBuilder();
@@ -87,17 +86,13 @@ public class EventlogMapper {
             Reader reader = new InputStreamReader(input, "ISO-8859-1");
             InputSource is = new InputSource(reader);
             is.setEncoding("ISO-8859-1");
-            log.info("-1");
             doc = documentBuilder.parse(is);
 
             RoundStatModel roundStatModel = new RoundStatModel();
 
             Element docEl = doc.getDocumentElement();
 
-            log.info("-2");
-            roundStatModel.setWinningTeam(TeamEnum.findByCode(Integer.parseInt(((Element) docEl.getElementsByTagName("bf:winningteam")).getNodeValue())));
-            log.info("1");
-            log.info(roundStatModel);
+            roundStatModel.setWinningTeam(TeamEnum.findByCode(Integer.parseInt(((NodeList) docEl.getElementsByTagName("bf:winningteam")).item(0).getFirstChild().getNodeValue())));
 
             NodeList subNodeTeamTickets = (NodeList) docEl.getElementsByTagName("bf:teamtickets");
             for (int i = 0; i < subNodeTeamTickets.getLength(); i++) {
@@ -111,18 +106,12 @@ public class EventlogMapper {
                         break;
                 }
             }
-            log.info("2");
-            log.info(roundStatModel);
 
             NodeList subNodeListStats = (NodeList) docEl.getElementsByTagName("bf:playerstat");
             for (int j = 0; j < subNodeListStats.getLength(); j++) {
-                log.info("3");
-                log.info(roundStatModel);
                 Element subNode = (Element) subNodeListStats.item(j);
                 NodeList subSubNodeListStats = (NodeList) subNode.getElementsByTagName("bf:statparam");
                 for (int k = 0; k < subSubNodeListStats.getLength(); k++) {
-                    log.info("4");
-                    log.info(roundStatModel);
                     Element subSubNode = (Element) subSubNodeListStats.item(k);
                     PlayerStatModel playerStatModel = new PlayerStatModel();
                     switch (subSubNode.getAttribute("name")) {
@@ -143,8 +132,6 @@ public class EventlogMapper {
                             break;
                     }
                     roundStatModel.getPlayerModels().add(playerStatModel);
-                    log.info("5");
-                    log.info(roundStatModel);
                 }
             }
             return Optional.of(roundStatModel);
