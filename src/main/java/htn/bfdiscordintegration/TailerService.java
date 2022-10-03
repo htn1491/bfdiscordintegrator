@@ -44,6 +44,9 @@ public class TailerService {
     
     @Value("${delete_after_read_and_move}")
     private Boolean deleteAfterReadAndMove;
+    
+    @Value("${publish_round_stats}")
+    private Boolean publishRoundStats;
 
     private String currentFileName = "";
 
@@ -111,7 +114,7 @@ public class TailerService {
                     log.info("Start reading of file " + fullFilepath);
                     currentFileName = event.context().toString();
 //                    Tailer tailer = new Tailer(new File(fullFilepath), new TailerThread(event.context().toString(), discordIntegratorService, adminHelpPrefix, chatlogExportLocation), 500);
-                    tailerThread = new CustomTailerThread(fullFilepath, event.context().toString(), discordIntegratorService, adminHelpPrefix, chatlogExportLocation);
+                    tailerThread = new CustomTailerThread(fullFilepath, event.context().toString(), discordIntegratorService, adminHelpPrefix, chatlogExportLocation, publishRoundStats);
                     tailerThread.start();
                 }
             }

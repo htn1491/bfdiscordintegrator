@@ -1,5 +1,7 @@
 package htn.bfdiscordintegration;
 
+import htn.bfdiscordintegration.models.ChatModel;
+import htn.bfdiscordintegration.models.enums.TeamEnum;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;

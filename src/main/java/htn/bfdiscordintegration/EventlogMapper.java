@@ -1,5 +1,10 @@
 package htn.bfdiscordintegration;
 
+import htn.bfdiscordintegration.models.ChatModel;
+import htn.bfdiscordintegration.models.PlayerModel;
+import htn.bfdiscordintegration.models.PlayerStatModel;
+import htn.bfdiscordintegration.models.RoundStatModel;
+import htn.bfdiscordintegration.models.enums.TeamEnum;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -66,6 +71,75 @@ public class EventlogMapper {
                 log.warn("Error parsing timestamp of timestampStr with format yyyyMMdd_HHmm! Using 0-based timestamp", e);
             }
         }
+    }
+
+    public Optional<RoundStatModel> handleRoundStats(String roundstats) {
+        log.trace("Handle roundstats " + roundstats);
+        for (Map.Entry<Integer, String> mapEntry : ISO8859Character.characterMap.entrySet()) {
+            roundstats = roundstats.replaceAll("(<bf:nonprint>" + mapEntry.getKey() + "</bf:nonprint>)", mapEntry.getValue());
+        }
+        Document doc;
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            this.documentBuilder = factory.newDocumentBuilder();
+            ByteArrayInputStream input = new ByteArrayInputStream(roundstats.getBytes("ISO-8859-1"));
+            Reader reader = new InputStreamReader(input, "ISO-8859-1");
+            InputSource is = new InputSource(reader);
+            is.setEncoding("ISO-8859-1");
+            doc = documentBuilder.parse(is);
+
+            RoundStatModel roundStatModel = new RoundStatModel();
+
+            Element docEl = doc.getDocumentElement();
+
+            roundStatModel.setWinningTeam(TeamEnum.findByCode(Integer.parseInt(((Element) docEl.getElementsByTagName("bf:winningteam")).getNodeValue())));
+
+            NodeList subNodeTeamTickets = (NodeList) docEl.getElementsByTagName("bf:teamtickets");
+            for (int i = 0; i < subNodeTeamTickets.getLength(); i++) {
+                Element subNode = (Element) subNodeTeamTickets.item(i);
+                switch (subNode.getAttribute("team")) {
+                    case "1":
+                        roundStatModel.setRedTickets(Integer.parseInt(subNode.getFirstChild().getNodeValue()));
+                        break;
+                    case "2":
+                        roundStatModel.setBlueTickets(Integer.parseInt(subNode.getFirstChild().getNodeValue()));
+                        break;
+                }
+            }
+
+            NodeList subNodeListStats = (NodeList) docEl.getElementsByTagName("bf:playerstat");
+            for (int j = 0; j < subNodeListStats.getLength(); j++) {
+                Element subNode = (Element) subNodeListStats.item(j);
+                NodeList subSubNodeListStats = (NodeList) subNode.getElementsByTagName("bf:statparam");
+                for (int k = 0; k < subSubNodeListStats.getLength(); k++) {
+                    Element subSubNode = (Element) subSubNodeListStats.item(k);
+                    PlayerStatModel playerStatModel = new PlayerStatModel();
+                    switch (subSubNode.getAttribute("name")) {
+                        case "player_name":
+                            playerStatModel.setPlayerName(subSubNode.getFirstChild().getNodeValue());
+                            break;
+                        case "team":
+                            playerStatModel.setTeam(TeamEnum.findByCode(Integer.parseInt(subSubNode.getFirstChild().getNodeValue())));
+                            break;
+                        case "score":
+                            playerStatModel.setScore(Integer.parseInt(subSubNode.getFirstChild().getNodeValue()));
+                            break;
+                        case "kills":
+                            playerStatModel.setKills(Integer.parseInt(subSubNode.getFirstChild().getNodeValue()));
+                            break;
+                        case "deaths":
+                            playerStatModel.setDeaths(Integer.parseInt(subSubNode.getFirstChild().getNodeValue()));
+                            break;
+                    }
+                    roundStatModel.getPlayerModels().add(playerStatModel);
+                }
+            }
+            return Optional.of(roundStatModel);
+        } catch (IOException | NumberFormatException | BeansException | DOMException | SAXException | ParserConfigurationException ex) {
+            log.warn("Error handling node " + roundstats, ex);
+        }
+
+        return Optional.empty();
     }
 
     /**

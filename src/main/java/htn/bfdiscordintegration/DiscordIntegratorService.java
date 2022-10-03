@@ -1,5 +1,7 @@
 package htn.bfdiscordintegration;
 
+import htn.bfdiscordintegration.models.ChatModel;
+import htn.bfdiscordintegration.models.enums.TeamEnum;
 import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
@@ -7,6 +9,7 @@ import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.rest.util.Color;
+import htn.bfdiscordintegration.models.RoundStatModel;
 import javax.annotation.PostConstruct;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -59,6 +62,37 @@ public class DiscordIntegratorService {
                 .color(TeamEnum.findByCode(chatModel.getTeam()).getDiscordColor())
                 .description(msg)
                 .build();
+    }
+
+    public void publishRoundStats(RoundStatModel roundStatModel) {
+        EmbedCreateSpec.Builder specBuilder = EmbedCreateSpec.builder()
+                .color(roundStatModel.getWinningTeam().getDiscordColor())
+                .title(roundStatModel.getWinningTeam().equals(TeamEnum.GLOBAL) ? "No team has won" : roundStatModel.getWinningTeam().getPrintValue() + " team has won the round!")
+                .description("The round statistics")
+                .addField("Blue tickets left", "" + roundStatModel.getBlueTickets(), true)
+                .addField("Red tickets left", "" + roundStatModel.getRedTickets(), true)
+                .addField("\u200B", "\u200B", false)
+                .addField("BLUE TEAM", "", false);
+
+            roundStatModel.getPlayerModels().stream().filter(pm -> pm.getTeam().equals(TeamEnum.BLUE)).sorted((o1, o2) -> {
+                return o2.getScore() - o1.getScore();
+            }).forEach(pm -> {
+                specBuilder.addField("Player name", pm.getPlayerName(), false);
+                specBuilder.addField("Score", "" + pm.getScore(), true);
+                specBuilder.addField("Kills", "" + pm.getKills(), true);
+                specBuilder.addField("Deaths", "" + pm.getDeaths(), true);
+            });
+            
+            specBuilder.addField("RED TEAM", "", false);
+            roundStatModel.getPlayerModels().stream().filter(pm -> pm.getTeam().equals(TeamEnum.RED)).sorted((o1, o2) -> {
+                return o2.getScore() - o1.getScore();
+            }).forEach(pm -> {
+                specBuilder.addField("Player name", pm.getPlayerName(), false);
+                specBuilder.addField("Score", "" + pm.getScore(), true);
+                specBuilder.addField("Kills", "" + pm.getKills(), true);
+                specBuilder.addField("Deaths", "" + pm.getDeaths(), true);
+            });
+        specBuilder.build();
     }
 
     public void publishEndRound() {

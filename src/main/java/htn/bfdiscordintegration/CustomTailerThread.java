@@ -1,5 +1,8 @@
 package htn.bfdiscordintegration;
 
+import htn.bfdiscordintegration.models.ChatModel;
+import htn.bfdiscordintegration.models.RoundStatModel;
+import htn.bfdiscordintegration.models.enums.TeamEnum;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -31,14 +34,16 @@ public class CustomTailerThread extends Thread {
 
     private final String fullFilepath;
     private final String filename;
+    private final Boolean publishRoundStats;
 
-    public CustomTailerThread(final String fullFilepath, final String filename, final DiscordIntegratorService discordIntegratorService, final String adminHelpPrefix, final String chatlogExportLocation) {
+    public CustomTailerThread(final String fullFilepath, final String filename, final DiscordIntegratorService discordIntegratorService, final String adminHelpPrefix, final String chatlogExportLocation, final Boolean publishRoundStats) {
         this.fullFilepath = fullFilepath;
         this.filename = filename;
         this.eventlogMapper = new EventlogMapper();
         this.discordIntegratorService = discordIntegratorService;
         this.adminHelpPrefix = adminHelpPrefix;
         this.chatlogExportLocation = chatlogExportLocation;
+        this.publishRoundStats = publishRoundStats;
     }
 
     @Override
@@ -75,6 +80,13 @@ public class CustomTailerThread extends Thread {
                 collectingElement = true;
                 elementCache = "";
             }
+            
+            if(publishRoundStats) {
+                if (line.startsWith("<bf:roundstats ")) {
+                    collectingElement = true;
+                    elementCache = "";
+                }
+            }
 
             if (collectingElement) {
                 elementCache += line;
@@ -93,10 +105,27 @@ public class CustomTailerThread extends Thread {
                 elementCache = "";
                 collectingElement = false;
             }
+            
+            //Roundstats ended, try to parse the roundstats
+            if (publishRoundStats && line.equals("</bf:event>")) {
+                Optional<RoundStatModel> roundStatModelOpt = eventlogMapper.handleRoundStats(elementCache);
+                if (roundStatModelOpt.isPresent()) {
+                    RoundStatModel roundStatModel = roundStatModelOpt.get();
+                    log.info(roundStatModel);
+                    handleDiscordMessage(roundStatModel);
+                }
+                log.trace("Clearing element cache");
+                elementCache = "";
+                collectingElement = false;
+            }
 
         } else {
             log.trace("Ignore blank line");
         }
+    }
+    
+    private void handleDiscordMessage(final RoundStatModel roundStatModel) {
+        discordIntegratorService.publishRoundStats(roundStatModel);
     }
 
     private void handleDiscordMessage(final ChatModel chatModel) {
