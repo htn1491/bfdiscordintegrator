@@ -79,6 +79,7 @@ public class EventlogMapper {
             roundstats = roundstats.replaceAll("(<bf:nonprint>" + mapEntry.getKey() + "</bf:nonprint>)", mapEntry.getValue());
         }
         Document doc;
+        log.info("0");
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             this.documentBuilder = factory.newDocumentBuilder();
@@ -93,6 +94,8 @@ public class EventlogMapper {
             Element docEl = doc.getDocumentElement();
 
             roundStatModel.setWinningTeam(TeamEnum.findByCode(Integer.parseInt(((Element) docEl.getElementsByTagName("bf:winningteam")).getNodeValue())));
+            log.info("1");
+            log.info(roundStatModel);
 
             NodeList subNodeTeamTickets = (NodeList) docEl.getElementsByTagName("bf:teamtickets");
             for (int i = 0; i < subNodeTeamTickets.getLength(); i++) {
@@ -106,12 +109,18 @@ public class EventlogMapper {
                         break;
                 }
             }
+            log.info("2");
+            log.info(roundStatModel);
 
             NodeList subNodeListStats = (NodeList) docEl.getElementsByTagName("bf:playerstat");
             for (int j = 0; j < subNodeListStats.getLength(); j++) {
+                log.info("3");
+                log.info(roundStatModel);
                 Element subNode = (Element) subNodeListStats.item(j);
                 NodeList subSubNodeListStats = (NodeList) subNode.getElementsByTagName("bf:statparam");
                 for (int k = 0; k < subSubNodeListStats.getLength(); k++) {
+                    log.info("4");
+                    log.info(roundStatModel);
                     Element subSubNode = (Element) subSubNodeListStats.item(k);
                     PlayerStatModel playerStatModel = new PlayerStatModel();
                     switch (subSubNode.getAttribute("name")) {
@@ -132,6 +141,8 @@ public class EventlogMapper {
                             break;
                     }
                     roundStatModel.getPlayerModels().add(playerStatModel);
+                    log.info("5");
+                    log.info(roundStatModel);
                 }
             }
             return Optional.of(roundStatModel);
