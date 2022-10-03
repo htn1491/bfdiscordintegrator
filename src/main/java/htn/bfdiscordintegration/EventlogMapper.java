@@ -87,12 +87,14 @@ public class EventlogMapper {
             Reader reader = new InputStreamReader(input, "ISO-8859-1");
             InputSource is = new InputSource(reader);
             is.setEncoding("ISO-8859-1");
+            log.info("-1");
             doc = documentBuilder.parse(is);
 
             RoundStatModel roundStatModel = new RoundStatModel();
 
             Element docEl = doc.getDocumentElement();
 
+            log.info("-2");
             roundStatModel.setWinningTeam(TeamEnum.findByCode(Integer.parseInt(((Element) docEl.getElementsByTagName("bf:winningteam")).getNodeValue())));
             log.info("1");
             log.info(roundStatModel);
@@ -146,7 +148,7 @@ public class EventlogMapper {
                 }
             }
             return Optional.of(roundStatModel);
-        } catch (IOException | NumberFormatException | BeansException | DOMException | SAXException | ParserConfigurationException ex) {
+        } catch (Exception ex) {
             log.warn("Error handling node " + roundstats, ex);
         }
 
