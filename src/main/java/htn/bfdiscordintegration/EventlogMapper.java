@@ -74,7 +74,7 @@ public class EventlogMapper {
     }
 
     public Optional<RoundStatModel> handleRoundStats(String roundstats) {
-        log.trace("Handle roundstats " + roundstats);
+        log.info("Handle roundstats " + roundstats);
         for (Map.Entry<Integer, String> mapEntry : ISO8859Character.characterMap.entrySet()) {
             roundstats = roundstats.replaceAll("(<bf:nonprint>" + mapEntry.getKey() + "</bf:nonprint>)", mapEntry.getValue());
         }
