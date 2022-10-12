@@ -61,7 +61,7 @@ public class CustomTailerThread extends Thread {
         } catch(FileNotFoundException e) {
             log.warn("File not found", e);
         } catch(Exception e) {
-            log.info("Tailer thread canceled: ", e.getMessage());
+            log.info("Tailer thread canceled: ", e);
         }
 
     }

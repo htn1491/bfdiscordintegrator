@@ -74,7 +74,7 @@ public class EventlogMapper {
     }
 
     public Optional<RoundStatModel> handleRoundStats(String roundstats) {
-        log.trace("Handle roundstats " + roundstats);
+        log.info("Handle roundstats " + roundstats);
         for (Map.Entry<Integer, String> mapEntry : ISO8859Character.characterMap.entrySet()) {
             roundstats = roundstats.replaceAll("(<bf:nonprint>" + mapEntry.getKey() + "</bf:nonprint>)", mapEntry.getValue());
         }
@@ -114,6 +114,8 @@ public class EventlogMapper {
                 for (int k = 0; k < subSubNodeListStats.getLength(); k++) {
                     Element subSubNode = (Element) subSubNodeListStats.item(k);
                     PlayerStatModel playerStatModel = new PlayerStatModel();
+                    log.info("Nodevalue");
+                    log.info(subSubNode.getAttribute("name") + " -- "+ subSubNode.getFirstChild().getNodeValue());
                     switch (subSubNode.getAttribute("name")) {
                         case "player_name":
                             playerStatModel.setPlayerName(subSubNode.getFirstChild().getNodeValue());
