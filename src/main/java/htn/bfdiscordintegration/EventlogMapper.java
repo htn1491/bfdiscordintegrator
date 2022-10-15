@@ -114,28 +114,34 @@ public class EventlogMapper {
                 for (int k = 0; k < subSubNodeListStats.getLength(); k++) {
                     Element subSubNode = (Element) subSubNodeListStats.item(k);
                     PlayerStatModel playerStatModel = new PlayerStatModel();
-                    log.info("Nodevalue");
-                    log.info(subSubNode.getAttribute("name") + " -- "+ subSubNode.getFirstChild().getNodeValue());
+                    log.info("New PlayerStatModel");
                     switch (subSubNode.getAttribute("name")) {
                         case "player_name":
                             playerStatModel.setPlayerName(subSubNode.getFirstChild().getNodeValue());
+                            log.info("setName -- "+subSubNode.getFirstChild().getNodeValue());
                             break;
                         case "team":
                             playerStatModel.setTeam(TeamEnum.findByCode(Integer.parseInt(subSubNode.getFirstChild().getNodeValue())));
+                            log.info("setTeam -- "+TeamEnum.findByCode(Integer.parseInt(subSubNode.getFirstChild().getNodeValue())));
                             break;
                         case "score":
                             playerStatModel.setScore(Integer.parseInt(subSubNode.getFirstChild().getNodeValue()));
+                            log.info("setScore -- "+subSubNode.getFirstChild().getNodeValue());
                             break;
                         case "kills":
                             playerStatModel.setKills(Integer.parseInt(subSubNode.getFirstChild().getNodeValue()));
+                            log.info("setKills -- "+subSubNode.getFirstChild().getNodeValue());
                             break;
                         case "deaths":
                             playerStatModel.setDeaths(Integer.parseInt(subSubNode.getFirstChild().getNodeValue()));
+                            log.info("setDeaths -- "+subSubNode.getFirstChild().getNodeValue());
                             break;
                     }
+                    log.info("Add PlayerStatModel "+playerStatModel);
                     roundStatModel.getPlayerModels().add(playerStatModel);
                 }
             }
+            log.info("RoundStatModel"+roundStatModel);
             return Optional.of(roundStatModel);
         } catch (Exception ex) {
             log.warn("Error handling node " + roundstats, ex);
