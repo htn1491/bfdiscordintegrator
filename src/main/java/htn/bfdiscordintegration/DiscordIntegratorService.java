@@ -92,7 +92,11 @@ public class DiscordIntegratorService {
                 specBuilder.addField("Kills", "" + pm.getKills(), true);
                 specBuilder.addField("Deaths", "" + pm.getDeaths(), true);
             });
-        specBuilder.build();
+        
+         gatewayDiscordClient.getChannelById(Snowflake.of(chatChannelID))
+                .ofType(MessageChannel.class)
+                .flatMap(channel -> channel.createMessage(specBuilder.build()))
+                .subscribe();
     }
 
     public void publishEndRound() {
