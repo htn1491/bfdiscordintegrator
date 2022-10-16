@@ -26,10 +26,10 @@
             <AppenderRef ref="FileAppender" />
         </Logger>
         
-        <Logger name="discord4j.rest.http.JacksonWriterStrategy" level="trace" additivity="false">
+<!--        <Logger name="discord4j.rest.http.JacksonWriterStrategy" level="trace" additivity="false">
             <AppenderRef ref="ConsoleAppender" />
             <AppenderRef ref="FileAppender" />
-        </Logger>
+        </Logger>-->
 
         <Root level="info">
             <AppenderRef ref="ConsoleAppender" />

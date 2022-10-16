@@ -71,13 +71,12 @@ public class DiscordIntegratorService {
                 .description("The round statistics")
                 .addField("Blue tickets left", "" + roundStatModel.getBlueTickets(), true)
                 .addField("Red tickets left", "" + roundStatModel.getRedTickets(), true)
-                .addField("\u200B", "\u200B", false)
                 .addField("BLUE TEAM", "\u200B", false);
 
             roundStatModel.getPlayerModels().stream().filter(pm -> pm.getTeam().equals(TeamEnum.BLUE)).sorted((o1, o2) -> {
                 return o2.getScore() - o1.getScore();
             }).forEach(pm -> {
-                specBuilder.addField("Player name", pm.getPlayerName(), false);
+                specBuilder.addField("Player name", pm.getPlayerName(), true);
                 specBuilder.addField("Score", "" + pm.getScore(), true);
                 specBuilder.addField("Kills", "" + pm.getKills(), true);
                 specBuilder.addField("Deaths", "" + pm.getDeaths(), true);
@@ -87,7 +86,7 @@ public class DiscordIntegratorService {
             roundStatModel.getPlayerModels().stream().filter(pm -> pm.getTeam().equals(TeamEnum.RED)).sorted((o1, o2) -> {
                 return o2.getScore() - o1.getScore();
             }).forEach(pm -> {
-                specBuilder.addField("Player name", pm.getPlayerName(), false);
+                specBuilder.addField("Player name", pm.getPlayerName(), true);
                 specBuilder.addField("Score", "" + pm.getScore(), true);
                 specBuilder.addField("Kills", "" + pm.getKills(), true);
                 specBuilder.addField("Deaths", "" + pm.getDeaths(), true);
