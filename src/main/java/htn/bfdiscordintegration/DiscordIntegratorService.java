@@ -72,7 +72,7 @@ public class DiscordIntegratorService {
                 .addField("Blue tickets left", "" + roundStatModel.getBlueTickets(), true)
                 .addField("Red tickets left", "" + roundStatModel.getRedTickets(), true)
                 .addField("\u200B", "\u200B", false)
-                .addField("BLUE TEAM", "", false);
+                .addField("BLUE TEAM", "-", false);
 
             roundStatModel.getPlayerModels().stream().filter(pm -> pm.getTeam().equals(TeamEnum.BLUE)).sorted((o1, o2) -> {
                 return o2.getScore() - o1.getScore();
@@ -83,7 +83,7 @@ public class DiscordIntegratorService {
                 specBuilder.addField("Deaths", "" + pm.getDeaths(), true);
             });
             
-            specBuilder.addField("RED TEAM", "", false);
+            specBuilder.addField("RED TEAM", " ", false);
             roundStatModel.getPlayerModels().stream().filter(pm -> pm.getTeam().equals(TeamEnum.RED)).sorted((o1, o2) -> {
                 return o2.getScore() - o1.getScore();
             }).forEach(pm -> {
