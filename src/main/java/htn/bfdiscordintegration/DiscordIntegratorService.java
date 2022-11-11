@@ -73,28 +73,36 @@ public class DiscordIntegratorService {
                 .addField("Red tickets left", "" + roundStatModel.getRedTickets(), true)
                 .addField("BLUE TEAM", "\u200B", false);
 
+        final StringBuilder playerNames = new StringBuilder();
+        final StringBuilder scores = new StringBuilder();
         roundStatModel.getPlayerModels().stream().filter(pm -> pm.getTeam().equals(TeamEnum.BLUE)).sorted((o1, o2) -> {
             return o2.getScore() - o1.getScore();
         }).limit(5).forEach(pm -> {
-            specBuilder.addField("Player name", pm.getPlayerName(), true);
-            specBuilder.addField("Score / Kills / Deaths",
-                    ((pm.getScore() < 10) ? "0" : "") + pm.getScore() + " / "
-                    + ((pm.getKills() < 10) ? "0" : "") + pm.getKills() + " / "
-                    + ((pm.getDeaths() < 10) ? "0" : "") + pm.getDeaths(),
-                     true);
+            playerNames.append(pm.getPlayerName()).append(pm.isIsAi() ? " (BOT)" : "").append("\n");
+            scores.append((pm.getScore() < 10) ? "0" : "").append(pm.getScore()).append(" / ")
+                    .append((pm.getKills() < 10) ? "0" : "").append(pm.getKills()).append(" / ")
+                    .append((pm.getDeaths() < 10) ? "0" : "").append(pm.getDeaths())
+                    .append("\n");
         });
-
+        specBuilder.addField("Player name", playerNames.toString(), true);
+        specBuilder.addField("Score / Kills / Deaths", scores.toString(), true);
+        
         specBuilder.addField("RED TEAM", "\u200B", false);
+        
+        //Reset variables
+        playerNames.setLength(0);
+        scores.setLength(0);
         roundStatModel.getPlayerModels().stream().filter(pm -> pm.getTeam().equals(TeamEnum.RED)).sorted((o1, o2) -> {
             return o2.getScore() - o1.getScore();
         }).limit(5).forEach(pm -> {
-            specBuilder.addField("Player name", pm.getPlayerName(), true);
-            specBuilder.addField("Score / Kills / Deaths",
-                    ((pm.getScore() < 10) ? "0" : "") + pm.getScore() + " / "
-                    + ((pm.getKills() < 10) ? "0" : "") + pm.getKills() + " / "
-                    + ((pm.getDeaths() < 10) ? "0" : "") + pm.getDeaths(),
-                     true);
+            playerNames.append(pm.getPlayerName()).append(pm.isIsAi() ? " (BOT)" : "").append("\n");
+            scores.append((pm.getScore() < 10) ? "0" : "").append(pm.getScore()).append(" / ")
+                    .append((pm.getKills() < 10) ? "0" : "").append(pm.getKills()).append(" / ")
+                    .append((pm.getDeaths() < 10) ? "0" : "").append(pm.getDeaths())
+                    .append("\n");
         });
+        specBuilder.addField("Player name", playerNames.toString(), true);
+        specBuilder.addField("Score / Kills / Deaths", scores.toString(), true);
 
         gatewayDiscordClient.getChannelById(Snowflake.of(chatChannelID))
                 .ofType(MessageChannel.class)

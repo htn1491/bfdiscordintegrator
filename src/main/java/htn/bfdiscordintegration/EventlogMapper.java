@@ -98,7 +98,7 @@ public class EventlogMapper {
             String modId = null;
             for (int i = 0; i < subNodeSettings.getLength(); i++) {
                 Element subNode = (Element) subNodeSettings.item(i);
-                switch (subNode.getAttribute("map")) {
+                switch (subNode.getAttribute("name")) {
                     case "map":
                         mapName = subNode.getFirstChild().getNodeValue();
                         break;
@@ -183,6 +183,9 @@ public class EventlogMapper {
                     switch (subSubNode.getAttribute("name")) {
                         case "player_name":
                             playerStatModel.setPlayerName(subSubNode.getFirstChild().getNodeValue());
+                            break;
+                        case "is_ai":
+                            playerStatModel.setIsAi(subSubNode.getFirstChild().getNodeValue().equals("1"));
                             break;
                         case "team":
                             playerStatModel.setTeam(TeamEnum.findByCode(Integer.parseInt(subSubNode.getFirstChild().getNodeValue())));

@@ -12,6 +12,7 @@ public class PlayerStatModel {
     private int score;
     private int kills;
     private int deaths;
+    private boolean isAi;
 
     public String getPlayerName() {
         return playerName;
@@ -53,8 +54,16 @@ public class PlayerStatModel {
         this.deaths = deaths;
     }
 
+    public boolean isIsAi() {
+        return isAi;
+    }
+
+    public void setIsAi(boolean isAi) {
+        this.isAi = isAi;
+    }
+
     @Override
     public String toString() {
-        return "PlayerStatModel{" + "playerName=" + playerName + ", team=" + team + ", score=" + score + ", kills=" + kills + ", deaths=" + deaths + '}';
+        return "PlayerStatModel{" + "playerName=" + playerName + ", team=" + team + ", score=" + score + ", kills=" + kills + ", deaths=" + deaths + ", isAi=" + isAi + '}';
     }
 }
