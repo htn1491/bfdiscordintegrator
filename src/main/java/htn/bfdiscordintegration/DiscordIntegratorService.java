@@ -108,6 +108,11 @@ public class DiscordIntegratorService {
                 .ofType(MessageChannel.class)
                 .flatMap(channel -> channel.createMessage(specBuilder.build()))
                 .subscribe();
+        
+        gatewayDiscordClient.getChannelById(Snowflake.of(publicChatChannelID))
+                .ofType(MessageChannel.class)
+                .flatMap(channel -> channel.createMessage(specBuilder.build()))
+                .subscribe();
     }
 
     public void publishEndRound() {
