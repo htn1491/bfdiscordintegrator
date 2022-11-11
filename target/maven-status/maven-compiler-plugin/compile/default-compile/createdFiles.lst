@@ -1,5 +1,8 @@
+htn\bfdiscordintegration\models\enums\Map1942.class
 htn\bfdiscordintegration\CustomTailerThread.class
+htn\bfdiscordintegration\models\enums\MapVietnam.class
 htn\bfdiscordintegration\TailerService.class
+htn\bfdiscordintegration\models\enums\Map1942DCFinal.class
 htn\bfdiscordintegration\EventlogMapper.class
 htn\bfdiscordintegration\models\PlayerStatModel.class
 htn\bfdiscordintegration\models\PlayerModel.class

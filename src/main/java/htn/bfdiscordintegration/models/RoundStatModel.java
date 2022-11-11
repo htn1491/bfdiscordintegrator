@@ -13,6 +13,7 @@ public class RoundStatModel {
     private int redTickets;
     private int blueTickets;
     private final List<PlayerStatModel> playerModels = new ArrayList<>();
+    private String mapName = null;
 
     public TeamEnum getWinningTeam() {
         return winningTeam;
@@ -42,9 +43,17 @@ public class RoundStatModel {
         return playerModels;
     }
 
+    public String getMapName() {
+        return mapName;
+    }
+
+    public void setMapName(String mapName) {
+        this.mapName = mapName;
+    }
+
     @Override
     public String toString() {
-        return "RoundStatModel{" + "winningTeam=" + winningTeam + ", redTickets=" + redTickets + ", blueTickets=" + blueTickets + ", playerModels=" + playerModels + '}';
+        return "RoundStatModel{" + "winningTeam=" + winningTeam + ", redTickets=" + redTickets + ", blueTickets=" + blueTickets + ", playerModels=" + playerModels + ", mapName=" + mapName + '}';
     }
     
 }

@@ -68,31 +68,35 @@ public class DiscordIntegratorService {
         EmbedCreateSpec.Builder specBuilder = EmbedCreateSpec.builder()
                 .color(roundStatModel.getWinningTeam().getDiscordColor())
                 .title(roundStatModel.getWinningTeam().equals(TeamEnum.GLOBAL) ? "No team has won" : roundStatModel.getWinningTeam().getPrintValue() + " team has won the round!")
-                .description("The round statistics")
+                .description("The round statistics" + ((StringUtils.hasText(roundStatModel.getMapName())) ? " for " + roundStatModel.getMapName() : ""))
                 .addField("Blue tickets left", "" + roundStatModel.getBlueTickets(), true)
                 .addField("Red tickets left", "" + roundStatModel.getRedTickets(), true)
                 .addField("BLUE TEAM", "\u200B", false);
 
-            roundStatModel.getPlayerModels().stream().filter(pm -> pm.getTeam().equals(TeamEnum.BLUE)).sorted((o1, o2) -> {
-                return o2.getScore() - o1.getScore();
-            }).forEach(pm -> {
-                specBuilder.addField("Player name", pm.getPlayerName(), true);
-                specBuilder.addField("Score", "" + pm.getScore(), true);
-                specBuilder.addField("Kills", "" + pm.getKills(), true);
-                specBuilder.addField("Deaths", "" + pm.getDeaths(), true);
-            });
-            
-            specBuilder.addField("RED TEAM", "\u200B", false);
-            roundStatModel.getPlayerModels().stream().filter(pm -> pm.getTeam().equals(TeamEnum.RED)).sorted((o1, o2) -> {
-                return o2.getScore() - o1.getScore();
-            }).forEach(pm -> {
-                specBuilder.addField("Player name", pm.getPlayerName(), true);
-                specBuilder.addField("Score", "" + pm.getScore(), true);
-                specBuilder.addField("Kills", "" + pm.getKills(), true);
-                specBuilder.addField("Deaths", "" + pm.getDeaths(), true);
-            });
-        
-         gatewayDiscordClient.getChannelById(Snowflake.of(chatChannelID))
+        roundStatModel.getPlayerModels().stream().filter(pm -> pm.getTeam().equals(TeamEnum.BLUE)).sorted((o1, o2) -> {
+            return o2.getScore() - o1.getScore();
+        }).limit(5).forEach(pm -> {
+            specBuilder.addField("Player name", pm.getPlayerName(), true);
+            specBuilder.addField("Score / Kills / Deaths",
+                    ((pm.getScore() < 10) ? "0" : "") + pm.getScore() + " / "
+                    + ((pm.getKills() < 10) ? "0" : "") + pm.getKills() + " / "
+                    + ((pm.getDeaths() < 10) ? "0" : "") + pm.getDeaths(),
+                     true);
+        });
+
+        specBuilder.addField("RED TEAM", "\u200B", false);
+        roundStatModel.getPlayerModels().stream().filter(pm -> pm.getTeam().equals(TeamEnum.RED)).sorted((o1, o2) -> {
+            return o2.getScore() - o1.getScore();
+        }).limit(5).forEach(pm -> {
+            specBuilder.addField("Player name", pm.getPlayerName(), true);
+            specBuilder.addField("Score / Kills / Deaths",
+                    ((pm.getScore() < 10) ? "0" : "") + pm.getScore() + " / "
+                    + ((pm.getKills() < 10) ? "0" : "") + pm.getKills() + " / "
+                    + ((pm.getDeaths() < 10) ? "0" : "") + pm.getDeaths(),
+                     true);
+        });
+
+        gatewayDiscordClient.getChannelById(Snowflake.of(chatChannelID))
                 .ofType(MessageChannel.class)
                 .flatMap(channel -> channel.createMessage(specBuilder.build()))
                 .subscribe();

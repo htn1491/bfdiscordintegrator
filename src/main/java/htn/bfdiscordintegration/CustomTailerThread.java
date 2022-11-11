@@ -35,6 +35,8 @@ public class CustomTailerThread extends Thread {
     private final String fullFilepath;
     private final String filename;
     private final Boolean publishRoundStats;
+    
+    private String handledMapName = null;
 
     public CustomTailerThread(final String fullFilepath, final String filename, final DiscordIntegratorService discordIntegratorService, final String adminHelpPrefix, final String chatlogExportLocation, final Boolean publishRoundStats) {
         this.fullFilepath = fullFilepath;
@@ -58,9 +60,9 @@ public class CustomTailerThread extends Thread {
                     handle(line);
                 }
             }
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             log.warn("File not found", e);
-        } catch(Exception e) {
+        } catch (Exception e) {
             log.info("Tailer thread canceled: ", e);
         }
 
@@ -72,16 +74,23 @@ public class CustomTailerThread extends Thread {
             //New bf:log begin?
             if (line.startsWith("<bf:log ")) {
                 log.debug("New start of log file detected");
+                handledMapName = null;
                 eventlogMapper.reset();
                 eventlogMapper.handleBeginTimestamp(line);
                 return;
             }
+
             if (line.startsWith("<bf:event ")) {
                 collectingElement = true;
                 elementCache = "";
             }
-            
-            if(publishRoundStats) {
+
+            if (publishRoundStats) {
+                if (line.startsWith("<bf:server")) {
+                    collectingElement = true;
+                    elementCache = "";
+                }
+
                 if (line.startsWith("<bf:roundstats ")) {
                     collectingElement = true;
                     elementCache = "";
@@ -90,6 +99,14 @@ public class CustomTailerThread extends Thread {
 
             if (collectingElement) {
                 elementCache += line;
+            }
+
+            //Server ended, try to parse the server
+            if (publishRoundStats && line.equals("</bf:server>")) {
+                handledMapName = eventlogMapper.extractMapName(elementCache);
+                log.trace("Clearing element cache");
+                elementCache = "";
+                collectingElement = false;
             }
 
             //Event ended, try to parse the event
@@ -105,12 +122,13 @@ public class CustomTailerThread extends Thread {
                 elementCache = "";
                 collectingElement = false;
             }
-            
+
             //Roundstats ended, try to parse the roundstats
             if (publishRoundStats && line.equals("</bf:roundstats>")) {
                 Optional<RoundStatModel> roundStatModelOpt = eventlogMapper.handleRoundStats(elementCache);
                 if (roundStatModelOpt.isPresent()) {
                     RoundStatModel roundStatModel = roundStatModelOpt.get();
+                    roundStatModel.setMapName(handledMapName);
                     log.info(roundStatModel);
                     handleDiscordMessage(roundStatModel);
                 }
@@ -123,7 +141,7 @@ public class CustomTailerThread extends Thread {
             log.trace("Ignore blank line");
         }
     }
-    
+
     private void handleDiscordMessage(final RoundStatModel roundStatModel) {
         discordIntegratorService.publishRoundStats(roundStatModel);
     }

@@ -4,6 +4,9 @@ import htn.bfdiscordintegration.models.ChatModel;
 import htn.bfdiscordintegration.models.PlayerModel;
 import htn.bfdiscordintegration.models.PlayerStatModel;
 import htn.bfdiscordintegration.models.RoundStatModel;
+import htn.bfdiscordintegration.models.enums.Map1942;
+import htn.bfdiscordintegration.models.enums.Map1942DCFinal;
+import htn.bfdiscordintegration.models.enums.MapVietnam;
 import htn.bfdiscordintegration.models.enums.TeamEnum;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -73,6 +76,69 @@ public class EventlogMapper {
         }
     }
 
+    public String extractMapName(String serverData) {
+        log.info("Extract Map Name " + serverData);
+        for (Map.Entry<Integer, String> mapEntry : ISO8859Character.characterMap.entrySet()) {
+            serverData = serverData.replaceAll("(<bf:nonprint>" + mapEntry.getKey() + "</bf:nonprint>)", mapEntry.getValue());
+        }
+        Document doc;
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            this.documentBuilder = factory.newDocumentBuilder();
+            ByteArrayInputStream input = new ByteArrayInputStream(serverData.getBytes("ISO-8859-1"));
+            Reader reader = new InputStreamReader(input, "ISO-8859-1");
+            InputSource is = new InputSource(reader);
+            is.setEncoding("ISO-8859-1");
+            doc = documentBuilder.parse(is);
+
+            Element docEl = doc.getDocumentElement();
+
+            NodeList subNodeSettings = (NodeList) docEl.getElementsByTagName("bf:setting");
+            String mapName = null;
+            String modId = null;
+            for (int i = 0; i < subNodeSettings.getLength(); i++) {
+                Element subNode = (Element) subNodeSettings.item(i);
+                switch (subNode.getAttribute("map")) {
+                    case "map":
+                        mapName = subNode.getFirstChild().getNodeValue();
+                        break;
+                    case "modid":
+                        modId = subNode.getFirstChild().getNodeValue();
+                        break;
+                }
+            }
+
+            if (modId != null) {
+                switch (modId) {
+                    case "bfvietnam":
+                        MapVietnam mapVietnam = MapVietnam.findByMapName(mapName);
+                        if (mapVietnam != null) {
+                            mapName = mapVietnam.getPrintName();
+                        }
+                        break;
+                    case "bf1942":
+                        Map1942 map1942 = Map1942.findByMapName(mapName);
+                        if (map1942 != null) {
+                            mapName = map1942.getPrintName();
+                        }
+                        break;
+                    case "dc_final":
+                        Map1942DCFinal map1942dc = Map1942DCFinal.findByMapName(mapName);
+                        if (map1942dc != null) {
+                            mapName = map1942dc.getPrintName();
+                        }
+                        break;
+                }
+            }
+
+            return mapName;
+        } catch (Exception ex) {
+            log.warn("Error handling node " + serverData, ex);
+        }
+
+        return null;
+    }
+
     public Optional<RoundStatModel> handleRoundStats(String roundstats) {
         log.info("Handle roundstats " + roundstats);
         for (Map.Entry<Integer, String> mapEntry : ISO8859Character.characterMap.entrySet()) {
@@ -132,10 +198,10 @@ public class EventlogMapper {
                             break;
                     }
                 }
-                log.info("Add PlayerStatModel "+playerStatModel);
+                log.info("Add PlayerStatModel " + playerStatModel);
                 roundStatModel.getPlayerModels().add(playerStatModel);
             }
-            log.info("RoundStatModel"+roundStatModel);
+            log.info("RoundStatModel" + roundStatModel);
             return Optional.of(roundStatModel);
         } catch (Exception ex) {
             log.warn("Error handling node " + roundstats, ex);
