@@ -170,13 +170,13 @@ public class DiscordIntegratorService {
     
     public void publishDiscordAttackMessage(final String msg) {
         if (StringUtils.hasText(attackChannelId)) {
-            log.info("Publish attack "+msg+" to "+attackChannelId);
+            log.info("Publish possible attack to "+attackChannelId);
             gatewayDiscordClient.getChannelById(Snowflake.of(attackChannelId))
                     .ofType(MessageChannel.class)
                     .flatMap(channel -> channel.createMessage("Possible attack try: "+msg))
                     .subscribe();
         } else {
-            log.info("Attack message dropped, because no attack_channel_id is set: " + msg);
+            log.info("Attack message dropped, because no attack_channel_id is set!");
         }
     }
 }
