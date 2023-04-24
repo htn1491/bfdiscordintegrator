@@ -1,6 +1,9 @@
 package htn.bfdiscordintegration;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -52,25 +55,21 @@ public class AttackLogTailerService {
             log.warn("Attack Log Filepath "+attackLogFilepath+" cannot be read. Skipping!");
             return;
         }
-
-        TailerListener listener = new TailerListenerAdapter() {
-            @Override
-            public void handle(String line) {
-                discordIntegratorService.publishDiscordAttackMessage(line);
+        
+        try ( BufferedReader br = new BufferedReader(new FileReader(attackLogFilepath))) {
+            String line;
+            while (true) {
+                line = br.readLine();
+                if (line == null) {
+                    Thread.sleep(500);
+                } else {
+                    discordIntegratorService.publishDiscordAttackMessage(line);
+                }
             }
-        };
-
-        log.info("Starting Tailing of "+attackLogFilepath);
-        tailer = new Tailer(f, listener, 100, true);
-
-        tailer.run();
-    }
-    
-    @PreDestroy
-    public void preDestroy() {
-        if(tailer != null) {
-            log.info("Stop tailing attack_log_filepath...");
-            tailer.stop();
+        } catch (FileNotFoundException e) {
+            log.warn("File not found", e);
+        } catch (Exception e) {
+            log.info("Tailer thread canceled: ", e);
         }
     }
 }
