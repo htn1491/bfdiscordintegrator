@@ -33,6 +33,9 @@ public class DiscordIntegratorService {
 
     @Value("${admin_help_channel_id}")
     private String adminChannelId;
+    
+    @Value("${attack_channel_id}")
+    private String attackChannelId;
 
     @Value("${admin_help_mention_id:}")
     private String adminHelpMentionId;
@@ -162,6 +165,17 @@ public class DiscordIntegratorService {
                     .subscribe();
         } else {
             log.info("Admin-Help message dropped, because no admin_channel_id is set: " + msg);
+        }
+    }
+    
+    public void publishDiscordAttackMessage(final String msg) {
+        if (StringUtils.hasText(attackChannelId)) {
+            gatewayDiscordClient.getChannelById(Snowflake.of(attackChannelId))
+                    .ofType(MessageChannel.class)
+                    .flatMap(channel -> channel.createMessage("Possible attack try: "+msg))
+                    .subscribe();
+        } else {
+            log.info("Attack message dropped, because no attack_channel_id is set: " + msg);
         }
     }
 }
