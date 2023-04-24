@@ -170,6 +170,7 @@ public class DiscordIntegratorService {
     
     public void publishDiscordAttackMessage(final String msg) {
         if (StringUtils.hasText(attackChannelId)) {
+            log.info("Publish attack "+msg+" to "+attackChannelId);
             gatewayDiscordClient.getChannelById(Snowflake.of(attackChannelId))
                     .ofType(MessageChannel.class)
                     .flatMap(channel -> channel.createMessage("Possible attack try: "+msg))

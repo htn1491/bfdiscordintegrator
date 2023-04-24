@@ -60,6 +60,7 @@ public class AttackLogTailerService {
             }
         };
 
+        log.info("Starting Tailing of "+attackLogFilepath);
         tailer = new Tailer(f, listener, 100, true);
 
         tailer.run();
