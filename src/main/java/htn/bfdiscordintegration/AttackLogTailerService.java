@@ -55,13 +55,14 @@ public class AttackLogTailerService {
             log.warn("Attack Log Filepath " + attackLogFilepath + " cannot be read. Skipping!");
             return;
         }
-
+        log.info("a");
         TailerListener listener = new TailerListenerAdapter() {
             @Override
             public void handle(String line) {
                 discordIntegratorService.publishDiscordAttackMessage(line);
             }
         };
+        log.info("b");
 
         tailer = new Tailer(f, listener, 100, true);
 
