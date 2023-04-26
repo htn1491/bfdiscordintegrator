@@ -41,35 +41,38 @@ public class AttackLogTailerService {
 
     @Autowired
     private DiscordIntegratorService discordIntegratorService;
-    
+
     private Tailer tailer = null;
 
     @PostConstruct
     public void tailAttackFIle() throws IOException {
-        if(!StringUtils.hasText(attackLogFilepath)) {
+        if (!StringUtils.hasText(attackLogFilepath)) {
             log.info("attack_log_filepath is not set. Skipping this function.");
             return;
         }
         File f = new File(attackLogFilepath);
-        if(!f.exists() || f.isDirectory() || !f.canRead()) { 
-            log.warn("Attack Log Filepath "+attackLogFilepath+" cannot be read. Skipping!");
+        if (!f.exists() || f.isDirectory() || !f.canRead()) {
+            log.warn("Attack Log Filepath " + attackLogFilepath + " cannot be read. Skipping!");
             return;
         }
-        
-        try ( BufferedReader br = new BufferedReader(new FileReader(attackLogFilepath))) {
-            String line;
-            while (true) {
-                line = br.readLine();
-                if (line == null) {
-                    Thread.sleep(500);
-                } else {
-                    discordIntegratorService.publishDiscordAttackMessage(line);
-                }
+
+        TailerListener listener = new TailerListenerAdapter() {
+            @Override
+            public void handle(String line) {
+                discordIntegratorService.publishDiscordAttackMessage(line);
             }
-        } catch (FileNotFoundException e) {
-            log.warn("File not found", e);
-        } catch (Exception e) {
-            log.info("Tailer thread canceled: ", e);
+        };
+
+        tailer = new Tailer(f, listener, 100, true);
+
+        tailer.run();
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        if (tailer != null) {
+            log.info("Stop tailing attack_log_filepath...");
+            tailer.stop();
         }
     }
 }
