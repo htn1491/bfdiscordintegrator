@@ -60,6 +60,8 @@ public class TailerService {
 
         WatchService watchService = FileSystems.getDefault().newWatchService();
         Path path = Paths.get(eventlogFilePath);
+        
+        log.info("Watching "+eventlogFilePath+" for changes");
 
         path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
 
