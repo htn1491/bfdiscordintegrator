@@ -29,11 +29,15 @@ public class AttackTailerThread extends Thread {
     public void run() {
         try {
             waitForFile();
+            log.info("Start reading attack log "+attackLogFilepath);
             try ( BufferedReader br = new BufferedReader(new FileReader(attackLogFilepath))) {
                 String line;
                 while (true) {
                     line = br.readLine();
                     if (line == null) {
+                        if(!initialReadDone) {
+                            log.info("Now waiting for new entries "+attackLogFilepath);
+                        }
                         initialReadDone = true;
                         Thread.sleep(500);
                     } else {
