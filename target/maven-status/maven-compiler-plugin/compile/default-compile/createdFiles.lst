@@ -1,6 +1,7 @@
 htn\bfdiscordintegration\models\enums\Map1942.class
 htn\bfdiscordintegration\CustomTailerThread.class
 htn\bfdiscordintegration\models\enums\MapVietnam.class
+htn\bfdiscordintegration\AttackTailerThread.class
 htn\bfdiscordintegration\TailerService.class
 htn\bfdiscordintegration\models\enums\Map1942DCFinal.class
 htn\bfdiscordintegration\EventlogMapper.class
@@ -9,7 +10,6 @@ htn\bfdiscordintegration\models\PlayerModel.class
 htn\bfdiscordintegration\AttackLogTailerService.class
 htn\bfdiscordintegration\models\enums\TeamEnum.class
 htn\bfdiscordintegration\ISO8859Character$1.class
-htn\bfdiscordintegration\AttackLogTailerService$1.class
 htn\bfdiscordintegration\BfdiscordintegrationApplication.class
 htn\bfdiscordintegration\DiscordIntegratorService.class
 htn\bfdiscordintegration\models\RoundStatModel.class
