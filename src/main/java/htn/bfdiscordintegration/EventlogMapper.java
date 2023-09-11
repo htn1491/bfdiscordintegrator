@@ -9,7 +9,6 @@ import htn.bfdiscordintegration.models.enums.Map1942DCFinal;
 import htn.bfdiscordintegration.models.enums.MapVietnam;
 import htn.bfdiscordintegration.models.enums.TeamEnum;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.text.ParseException;
@@ -22,18 +21,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeansException;
 import org.springframework.util.StringUtils;
-import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 public class EventlogMapper {
 
@@ -299,18 +295,21 @@ public class EventlogMapper {
                     NodeList subNodeListChat = (NodeList) docEl.getElementsByTagName("bf:param");
                     for (int j = 0; j < subNodeListChat.getLength(); j++) {
                         Element subNode = (Element) subNodeListChat.item(j);
+                        
+                        Node subNodeChild = subNode.getFirstChild();
+                        String subNodeValue = subNodeChild.getNodeValue();
                         switch (subNode.getAttribute("name")) {
                             case "player_id":
-                                int playerId = Integer.parseInt(subNode.getFirstChild().getNodeValue());
+                                int playerId = Integer.parseInt(subNodeValue);
                                 if (knownPlayers.containsKey(playerId)) {
                                     chatModel.setPlayerModel(knownPlayers.get(playerId));
                                 }
                                 break;
                             case "team":
-                                chatModel.setTeam(Integer.valueOf(subNode.getFirstChild().getNodeValue()));
+                                chatModel.setTeam(Integer.valueOf(subNodeValue));
                                 break;
                             case "text":
-                                chatModel.setText(subNode.getFirstChild().getNodeValue().replace("&lt;", "<").replace("&gt;", ">"));
+                                chatModel.setText(subNodeValue.replace("&lt;", "<").replace("&gt;", ">"));
                                 break;
                         }
                     }
@@ -319,7 +318,7 @@ public class EventlogMapper {
                     log.trace("No handled attribute " + docEl.getAttribute("name"));
                     break;
             }
-        } catch (IOException | NumberFormatException | BeansException | DOMException | SAXException | ParserConfigurationException ex) {
+        } catch (Exception ex) {
             log.warn("Error handling node " + event, ex);
         }
         return Optional.empty();
