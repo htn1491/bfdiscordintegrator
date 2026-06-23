@@ -173,7 +173,7 @@ public class DiscordIntegratorService {
             log.info("Publish possible attack to "+attackChannelId);
             gatewayDiscordClient.getChannelById(Snowflake.of(attackChannelId))
                     .ofType(MessageChannel.class)
-                    .flatMap(channel -> channel.createMessage("Possible attack try: "+msg))
+                    .flatMap(channel -> channel.createMessage(msg))
                     .subscribe();
         } else {
             log.info("Attack message dropped, because no attack_channel_id is set!");
